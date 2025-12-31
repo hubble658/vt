@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="700.0" prefWidth="1100.0" stylesheets="@../../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.studyflow.app.gui.admin.AdminMainController">
+
+    <!-- SOL MENÜ (SIDEBAR) -->
+    <left>
+        <VBox prefWidth="260.0" styleClass="sidebar">
+            <Label styleClass="app-logo-text" text="StudyFlow Admin" />
+
+            <!-- 1. DASHBOARD -->
+            <Button fx:id="btnDashboard" maxWidth="Infinity" onAction="#showDashboard" styleClass="nav-button" text="Dashboard" />
+
+            <!-- 2. FACILITIES (Ok İşaretli) -->
+            <Button fx:id="btnFacilities" maxWidth="Infinity" onAction="#showFacilitiesMenu" styleClass="nav-button">
+                <graphic>
+                    <HBox alignment="CENTER_LEFT" maxWidth="Infinity">
+                        <Label text="Facilities" textFill="#666666" HBox.hgrow="ALWAYS" />
+                        <Label styleClass="nav-button-arrow" text="►" />
+                    </HBox>
+                </graphic>
+            </Button>
+
+            <!-- 3. LIBRARIANS (Ok İşaretli) -->
+            <Button fx:id="btnLibrarians" maxWidth="Infinity" onAction="#showLibrariansMenu" styleClass="nav-button">
+                <graphic>
+                    <HBox alignment="CENTER_LEFT" maxWidth="Infinity">
+                        <Label text="Librarians" textFill="#666666" HBox.hgrow="ALWAYS" />
+                        <Label styleClass="nav-button-arrow" text="►" />
+                    </HBox>
+                </graphic>
+            </Button>
+
+            <VBox VBox.vgrow="ALWAYS" />
+
+            <Button maxWidth="Infinity" onAction="#handleLogout" styleClass="nav-button" text="Logout" />
+        </VBox>
+    </left>
+
+    <!-- ÜST BAR -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20.0" styleClass="top-bar">
+            <Label fx:id="welcomeLabel" styleClass="welcome-text" text="Welcome, Admin" />
+            <HBox HBox.hgrow="ALWAYS" />
+            <Label fx:id="dateLabel" styleClass="date-text" text="26/01/2025" />
+        </HBox>
+    </top>
+
+    <!-- İÇERİK -->
+    <center>
+        <StackPane fx:id="contentArea" style="-fx-background-color: #f4f6f8;" />
+    </center>
+
+</BorderPane>

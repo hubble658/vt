@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="0" stylesheets="@../../../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.studyflow.app.gui.user.facility.UserFacilityDashboardController">
+
+    <!-- Kiosk Header -->
+    <HBox alignment="CENTER_LEFT" spacing="20.0" style="-fx-background-color: white; -fx-padding: 20 40; -fx-border-color: #e0e0e0; -fx-border-width: 0 0 1 0;">
+        <Button text="← Back to List" onAction="#handleBack" styleClass="big-back-button" />
+
+        <Region HBox.hgrow="ALWAYS" />
+
+        <Label fx:id="facilityNameLabel" text="Facility Name" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+    </HBox>
+
+    <!-- Grid Menü -->
+    <VBox alignment="CENTER" VBox.vgrow="ALWAYS" style="-fx-background-color: #f4f6f8;">
+        <GridPane hgap="40" vgap="40" alignment="CENTER" styleClass="dashboard-grid">
+
+            <!-- 1. REZERVE (DISABLED) -->
+            <Button fx:id="btnReserve" text="Make Reservation" onAction="#handleReserve"
+                    styleClass="dashboard-card-btn" prefWidth="280" prefHeight="220" GridPane.columnIndex="0" GridPane.rowIndex="0" disable="true" />
+
+            <!-- 2. SAATLER -->
+            <Button fx:id="btnHours" text="Weekly Hours" onAction="#handleWeeklyHours"
+                    styleClass="dashboard-card-btn" prefWidth="280" prefHeight="220" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+            <!-- 3. BİLGİ -->
+            <Button fx:id="btnInfo" text="Facility Info" onAction="#handleInfo"
+                    styleClass="dashboard-card-btn" prefWidth="280" prefHeight="220" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+
+        </GridPane>
+    </VBox>
+
+</VBox>

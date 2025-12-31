@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="700.0" prefWidth="1200.0" stylesheets="@../../../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.studyflow.app.gui.librarian.editor.LibrarianDeskEditorController">
+
+    <!-- ÜST HEADER -->
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-background-color: white; -fx-padding: 10; -fx-border-color: #ddd; -fx-border-width: 0 0 1 0;">
+            <Label text="Facility Map" style="-fx-font-weight: bold; -fx-text-fill: #555;">
+                <font><Font size="14.0" /></font>
+            </Label>
+
+            <Label fx:id="breadcrumbLabel" text=" > Select a Block" style="-fx-text-fill: #888;" />
+
+            <Region HBox.hgrow="ALWAYS" />
+
+            <Button fx:id="btnBackToMap" text="Back to Facility Map" onAction="#handleBackToMap" visible="false" styleClass="link-button" />
+        </HBox>
+    </top>
+
+    <!-- ORTA ALAN -->
+    <center>
+        <StackPane style="-fx-background-color: #dcdcdc;">
+
+            <!-- KATMAN 1: TESİS HARİTASI -->
+            <ScrollPane fx:id="facilityScroll" fitToHeight="true" fitToWidth="true" pannable="true" visible="true">
+                <content>
+                    <StackPane alignment="CENTER" minHeight="700.0" minWidth="700.0">
+                        <Pane fx:id="facilityCanvas" maxHeight="600.0" maxWidth="600.0" minHeight="600.0" minWidth="600.0" style="-fx-background-color: white; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);" />
+                    </StackPane>
+                </content>
+            </ScrollPane>
+
+            <!-- KATMAN 2: DESK EDİTÖRÜ -->
+            <ScrollPane fx:id="deskScroll" fitToHeight="true" fitToWidth="true" pannable="true" visible="false">
+                <content>
+                    <StackPane alignment="CENTER" minHeight="700.0" minWidth="700.0">
+                        <Pane fx:id="deskCanvas" maxHeight="600.0" maxWidth="600.0" minHeight="600.0" minWidth="600.0" style="-fx-background-color: white; -fx-border-color: #333; -fx-border-width: 2;">
+                            <effect><DropShadow color="#00000040" radius="20" /></effect>
+                        </Pane>
+                    </StackPane>
+                </content>
+            </ScrollPane>
+
+        </StackPane>
+    </center>
+
+    <!-- SAĞ PANEL -->
+    <right>
+        <StackPane>
+            <VBox fx:id="selectionPanel" prefWidth="300.0" spacing="20.0" styleClass="sidebar" visible="true" alignment="CENTER">
+                <Label text="👆 Select a Block" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #888;" />
+                <Label text="Click on a block in the map to manage its desks." wrapText="true" textAlignment="CENTER" style="-fx-text-fill: #999;" />
+            </VBox>
+
+            <VBox fx:id="editorPanel" prefWidth="300.0" spacing="15.0" styleClass="sidebar" visible="false">
+                <padding><Insets bottom="20" left="20" right="20" top="20"/></padding>
+
+                <Label styleClass="header-label" text="Desk Editor" />
+                <Label fx:id="blockInfoLabel" styleClass="sub-header-label" text="Editing: Block A" />
+
+                <Separator />
+
+                <VBox fx:id="propertiesBox" disable="true" spacing="10.0">
+                    <Label style="-fx-font-weight: bold;" text="Selected Desk Properties" />
+
+                    <VBox spacing="5">
+                        <Label text="Seat Capacity (Size)" />
+                        <Spinner fx:id="sizeSpinner" editable="true" min="1" max="50" />
+                    </VBox>
+
+                    <VBox spacing="5">
+                        <Label text="ID Allocation Range" />
+                        <Spinner fx:id="allocationSpinner" editable="true" min="1" max="100" />
+                    </VBox>
+
+                    <Label fx:id="rangePreviewLabel" text="Range: --" style="-fx-font-weight: bold; -fx-text-fill: #4a90e2;" />
+
+                    <Label text="Dimensions &amp; Color" />
+                    <!-- GÜNCELLEME: Slider Max değerleri 600 yapıldı -->
+                    <Slider fx:id="widthSlider" min="20" max="600" />
+                    <Slider fx:id="heightSlider" min="20" max="600" />
+                    <ColorPicker fx:id="colorPicker" maxWidth="Infinity" />
+
+                    <Button maxWidth="Infinity" onAction="#handleDeleteDesk" styleClass="danger-button" text="Delete Desk" />
+                </VBox>
+
+                <Separator />
+                <Button fx:id="btnUndo" maxWidth="Infinity" onAction="#handleUndo" styleClass="link-button" text="↩ Undo" />
+                <Button maxWidth="Infinity" onAction="#handleAddDesk" styleClass="primary-button" text="+ Add New Desk" />
+                <Button maxWidth="Infinity" onAction="#handleSaveChanges" styleClass="success-button" text="Save Changes" />
+
+                <Label fx:id="statusLabel" managed="false" visible="false" wrapText="true" />
+
+                <VBox VBox.vgrow="ALWAYS" />
+
+                <Button onAction="#handleBackToMap" styleClass="link-button" text="Back to Facility Map" />
+            </VBox>
+        </StackPane>
+    </right>
+
+</BorderPane>

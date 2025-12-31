@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="700.0" prefWidth="1200.0" stylesheets="@../../../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.studyflow.app.gui.librarian.editor.LibrarianBlockEditorController">
+
+    <!-- ORTA ALAN: HARİTA -->
+    <center>
+        <ScrollPane fitToHeight="true" fitToWidth="true" pannable="true" style="-fx-background-color: #dcdcdc; -fx-background: #dcdcdc;">
+            <content>
+                <!-- WRAPPER: 700x700 (600'den büyük olmalı ki ortalasın ve kenar boşluğu kalsın) -->
+                <StackPane alignment="CENTER" minHeight="700.0" minWidth="700.0" style="-fx-background-color: #dcdcdc;">
+                    <children>
+                        <!-- ASIL ÇİZİM ALANI: 600x600 Sabit -->
+                        <Pane fx:id="mapCanvas" maxHeight="600.0" maxWidth="600.0" minHeight="600.0" minWidth="600.0" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: white; -fx-border-color: #999; -fx-border-width: 1;">
+                            <effect>
+                                <DropShadow color="#00000040" radius="20" spread="0.1" />
+                            </effect>
+                        </Pane>
+                    </children>
+                </StackPane>
+            </content>
+        </ScrollPane>
+    </center>
+
+    <!-- SAĞ PANEL -->
+    <right>
+        <VBox prefWidth="280.0" spacing="15.0" styleClass="sidebar">
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+
+            <Label styleClass="header-label" text="Block Editor" />
+            <Label styleClass="sub-header-label" text="Select a block to edit" />
+
+            <Separator />
+
+            <VBox fx:id="propertiesPanel" disable="true" spacing="10.0">
+                <Label style="-fx-font-weight: bold;" text="Selected Block Properties" />
+
+                <VBox>
+                    <Label text="Block Name" />
+                    <TextField fx:id="blockNameField" promptText="e.g. Zone A" />
+                </VBox>
+
+                <VBox>
+                    <Label text="Width (px)" />
+                    <!-- GÜNCELLEME: Max değer 600'e çıkarıldı -->
+                    <Slider fx:id="widthSlider" blockIncrement="10.0" majorTickUnit="50.0" max="600.0" min="20.0" showTickMarks="true" value="100.0" />
+                </VBox>
+
+                <VBox>
+                    <Label text="Height (px)" />
+                    <!-- GÜNCELLEME: Max değer 600'e çıkarıldı -->
+                    <Slider fx:id="heightSlider" blockIncrement="10.0" majorTickUnit="50.0" max="600.0" min="20.0" showTickMarks="true" value="80.0" />
+                </VBox>
+
+                <VBox>
+                    <Label text="Color" />
+                    <ColorPicker fx:id="colorPicker" maxWidth="Infinity" />
+                </VBox>
+
+                <Button maxWidth="Infinity" onAction="#handleDeleteBlock" styleClass="danger-button" text="Delete Block" />
+            </VBox>
+
+            <Separator />
+
+            <Button fx:id="btnUndo" maxWidth="Infinity" onAction="#handleUndo" styleClass="link-button" text="↩ Undo Last Action" />
+            <Button maxWidth="Infinity" onAction="#handleAddBlock" styleClass="primary-button" text="+ Add New Block" />
+            <Button maxWidth="Infinity" onAction="#handleSaveChanges" styleClass="success-button" text="Save Changes" />
+
+            <Label fx:id="statusLabel" managed="false" visible="false" wrapText="true" />
+
+            <VBox VBox.vgrow="ALWAYS" />
+        </VBox>
+    </right>
+
+</BorderPane>

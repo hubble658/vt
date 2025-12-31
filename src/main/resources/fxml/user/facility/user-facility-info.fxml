@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="0" stylesheets="@../../../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.studyflow.app.gui.user.facility.UserFacilityDetailsController">
+
+    <!-- Header -->
+    <HBox alignment="CENTER_LEFT" spacing="20.0" style="-fx-background-color: white; -fx-padding: 20 40; -fx-border-color: #e0e0e0; -fx-border-width: 0 0 1 0;">
+        <Button text="← Back to Menu" onAction="#handleBackToDashboard" styleClass="big-back-button" />
+
+        <!-- BU SATIR EKLENDİ: Araya esnek boşluk koyarak yazıyı sağa itiyoruz -->
+        <Region HBox.hgrow="ALWAYS" />
+
+        <Label fx:id="headerLabel" text="Facility Info" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+    </HBox>
+
+    <!-- İçerik -->
+    <VBox alignment="TOP_CENTER" VBox.vgrow="ALWAYS" style="-fx-background-color: #f4f6f8; -fx-padding: 40;">
+        <VBox maxWidth="600.0" spacing="20.0" styleClass="form-card" alignment="CENTER">
+            <padding><Insets top="30" right="30" bottom="30" left="30"/></padding>
+
+            <!-- Resim -->
+            <StackPane style="-fx-background-color: #eee; -fx-background-radius: 10;">
+                <ImageView fx:id="facilityImage" fitWidth="500.0" preserveRatio="true" />
+            </StackPane>
+
+            <!-- Bilgiler -->
+            <Label fx:id="nameLabel" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #333;" wrapText="true" />
+
+            <HBox alignment="CENTER" spacing="10">
+                <Label text="📍" styleClass="timer-icon" />
+                <Label fx:id="addressLabel" style="-fx-font-size: 18px; -fx-text-fill: #666;" wrapText="true" />
+            </HBox>
+        </VBox>
+    </VBox>
+</VBox>

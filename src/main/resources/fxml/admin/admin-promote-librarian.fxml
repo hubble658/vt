@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane stylesheets="@../../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.studyflow.app.gui.admin.AdminPromoteLibrarianController">
+
+    <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="500.0" spacing="20.0" styleClass="form-card">
+
+        <VBox alignment="CENTER" spacing="5.0">
+            <Label styleClass="header-label" text="Manage Staff" />
+            <Label styleClass="sub-header-label" text="Promote User to Librarian" />
+        </VBox>
+
+        <VBox spacing="15.0">
+            <Label text="This action promotes an existing user to the Librarian role and assigns them to a facility." textFill="#666" wrapText="true"/>
+
+            <!-- Email Girişi -->
+            <VBox>
+                <Label text="User Email Address" />
+                <TextField fx:id="emailField" promptText="Enter user email (e.g. user@studyflow.com)" />
+            </VBox>
+
+            <!-- DEĞİŞTİ: Tesis ID Girişi -->
+            <VBox>
+                <Label text="Facility ID" />
+                <TextField fx:id="facilityIdField" promptText="Enter facility ID (e.g. 5)" />
+            </VBox>
+        </VBox>
+
+        <Label fx:id="statusLabel" managed="false" visible="false" wrapText="true" />
+
+        <Button maxWidth="1.7976931348623157E308" onAction="#handlePromoteUser" styleClass="primary-button" text="Grant Librarian Access" />
+
+    </VBox>
+</StackPane>

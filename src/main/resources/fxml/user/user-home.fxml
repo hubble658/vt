@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="700.0" prefWidth="1000.0" stylesheets="@../../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.studyflow.app.gui.user.UserHomeController">
+
+   <!-- ÜST HEADER -->
+   <top>
+      <!-- Padding artırıldı, daha ferah header -->
+      <HBox alignment="CENTER_LEFT" spacing="20.0" style="-fx-background-color: white; -fx-padding: 20 40; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 10, 0, 0, 2);">
+         <!-- Logo -->
+         <Label styleClass="app-logo-text" text="StudyFlow" />
+
+         <Region HBox.hgrow="ALWAYS" />
+
+         <!-- Timer -->
+         <HBox alignment="CENTER" spacing="10" styleClass="timer-badge">
+            <Label styleClass="timer-icon" text="⏱" />
+            <Label fx:id="timerLabel" styleClass="timer-label" text="30:00" />
+         </HBox>
+      </HBox>
+   </top>
+
+   <!-- ORTA ALAN -->
+   <center>
+      <StackPane fx:id="contentArea" style="-fx-background-color: #f9f9f9;" />
+   </center>
+
+   <!-- ALT FOOTER -->
+   <bottom>
+      <VBox styleClass="app-footer">
+         <!-- Metin Güncellendi ve Stil Sınıfı Eklendi -->
+         <Label styleClass="footer-text" text="© 2025 StudyFlow. All Rights Reserved." />
+      </VBox>
+   </bottom>
+
+</BorderPane>

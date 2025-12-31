@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane fitToWidth="true" fitToHeight="true" hbarPolicy="NEVER"
+            stylesheets="@../../css/styles.css" 
+            xmlns="http://javafx.com/javafx/21" 
+            xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="com.studyflow.app.gui.librarian.LibrarianHomeController">
+    
+    <VBox spacing="30" style="-fx-background-color: #f4f6f8; -fx-padding: 40;">
+        
+        <!-- HEADER -->
+        <HBox alignment="CENTER_LEFT" spacing="20">
+            <VBox spacing="5">
+                <Label text="Librarian Dashboard" style="-fx-font-size: 32px; -fx-font-weight: 800; -fx-text-fill: #1a1a2e;"/>
+                <Label fx:id="facilityNameLabel" text="Facility: Loading..." style="-fx-font-size: 16px; -fx-text-fill: #6b7280;"/>
+            </VBox>
+            <Region HBox.hgrow="ALWAYS"/>
+            <VBox alignment="CENTER_RIGHT" spacing="3">
+                <Label text="Today's Date" style="-fx-font-size: 12px; -fx-text-fill: #9ca3af;"/>
+                <Label fx:id="currentDateLabel" text="--" style="-fx-font-size: 18px; -fx-font-weight: 600; -fx-text-fill: #374151;"/>
+            </VBox>
+        </HBox>
+        
+        <!-- REAL-TIME OCCUPANCY BAR -->
+        <VBox styleClass="stat-card" spacing="15">
+            <HBox alignment="CENTER_LEFT" spacing="20">
+                <Label text="Real-Time Occupancy" style="-fx-font-size: 18px; -fx-font-weight: 700; -fx-text-fill: #333;"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label fx:id="occupancyPercentLabel" text="0%" style="-fx-font-size: 24px; -fx-font-weight: 800; -fx-text-fill: #4a90e2;"/>
+            </HBox>
+            <ProgressBar fx:id="occupancyProgressBar" progress="0" prefHeight="25" maxWidth="Infinity" 
+                         style="-fx-accent: #4a90e2;"/>
+            <HBox spacing="30">
+                <Label fx:id="occupiedSeatsLabel" text="Occupied: 0" style="-fx-font-size: 14px; -fx-text-fill: #27ae60;"/>
+                <Label fx:id="availableSeatsLabel" text="Available: 0" style="-fx-font-size: 14px; -fx-text-fill: #95a5a6;"/>
+                <Label fx:id="totalSeatsInfoLabel" text="Total: 0 seats" style="-fx-font-size: 14px; -fx-text-fill: #666;"/>
+            </HBox>
+        </VBox>
+        
+        <!-- ISTATISTIK KARTLARI -->
+        <GridPane hgap="20" vgap="20">
+            <VBox GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="stat-card" spacing="10" prefWidth="220">
+                <HBox alignment="CENTER_LEFT" spacing="12">
+                    <Label text="BLK" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #4a90e2;"/>
+                    <VBox>
+                        <Label text="Blocks" style="-fx-font-size: 13px; -fx-text-fill: #6b7280;"/>
+                        <Label fx:id="totalBlocksLabel" text="0" style="-fx-font-size: 26px; -fx-font-weight: 800; -fx-text-fill: #4a90e2;"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+            
+            <VBox GridPane.columnIndex="1" GridPane.rowIndex="0" styleClass="stat-card" spacing="10" prefWidth="220">
+                <HBox alignment="CENTER_LEFT" spacing="12">
+                    <Label text="DSK" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #27ae60;"/>
+                    <VBox>
+                        <Label text="Desks" style="-fx-font-size: 13px; -fx-text-fill: #6b7280;"/>
+                        <Label fx:id="totalDesksLabel" text="0" style="-fx-font-size: 26px; -fx-font-weight: 800; -fx-text-fill: #27ae60;"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+            
+            <VBox GridPane.columnIndex="2" GridPane.rowIndex="0" styleClass="stat-card" spacing="10" prefWidth="220">
+                <HBox alignment="CENTER_LEFT" spacing="12">
+                    <Label text="RES" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #e67e22;"/>
+                    <VBox>
+                        <Label text="Today's Reservations" style="-fx-font-size: 13px; -fx-text-fill: #6b7280;"/>
+                        <Label fx:id="todayReservationsLabel" text="0" style="-fx-font-size: 26px; -fx-font-weight: 800; -fx-text-fill: #e67e22;"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+            
+            <VBox GridPane.columnIndex="3" GridPane.rowIndex="0" styleClass="stat-card" spacing="10" prefWidth="220">
+                <HBox alignment="CENTER_LEFT" spacing="12">
+                    <Label text="WK" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #9b59b6;"/>
+                    <VBox>
+                        <Label text="This Week" style="-fx-font-size: 13px; -fx-text-fill: #6b7280;"/>
+                        <Label fx:id="weekReservationsLabel" text="0" style="-fx-font-size: 26px; -fx-font-weight: 800; -fx-text-fill: #9b59b6;"/>
+                    </VBox>
+                </HBox>
+            </VBox>
+        </GridPane>
+        
+        <Separator/>
+        
+        <!-- ALT KISIM: GRAFIK + TAKVIM AYARI -->
+        <HBox spacing="30">
+            
+            <!-- SOL: HAFTALIK REZERVASYON GRAFIGI -->
+            <VBox styleClass="stat-card" spacing="15" prefWidth="550" prefHeight="350" HBox.hgrow="ALWAYS">
+                <Label text="Weekly Reservation Trend" style="-fx-font-size: 18px; -fx-font-weight: 700; -fx-text-fill: #333;"/>
+                <BarChart fx:id="weeklyBarChart" prefHeight="280">
+                    <xAxis>
+                        <CategoryAxis label="Day"/>
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis label="Reservations"/>
+                    </yAxis>
+                </BarChart>
+            </VBox>
+        </HBox>
+        
+    </VBox>
+</ScrollPane>

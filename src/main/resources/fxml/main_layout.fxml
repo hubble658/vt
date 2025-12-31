@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+
+
+<BorderPane
+        fx:id="mainPane"
+        fx:controller="com.studyflow.app.gui.MainController"
+        maxHeight="-Infinity" maxWidth="-Infinity"
+        minHeight="-Infinity" minWidth="-Infinity"
+        prefHeight="768.0" prefWidth="1024.0"
+        xmlns="http://javafx.com/javafx/21"
+        xmlns:fx="http://javafx.com/fxml/1" />

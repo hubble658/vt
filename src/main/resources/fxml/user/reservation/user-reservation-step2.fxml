@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.effect.DropShadow?>
+
+<BorderPane prefHeight="700.0" prefWidth="1200.0" stylesheets="@../../../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.studyflow.app.gui.user.reservation.UserReservationStep2Controller">
+
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="20" style="-fx-background-color: white; -fx-padding: 20 40; -fx-border-color: #ddd; -fx-border-width: 0 0 1 0;">
+            <Button text="← Geri" onAction="#handleBack" styleClass="big-back-button" />
+            <Label text="Adım 2: Blok Seçimi" style="-fx-font-size: 24px; -fx-font-weight: 800; -fx-text-fill: #2c3e50;" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Label fx:id="dateLabel" text="Wed, 12 March | 14:00 - 16:00" style="-fx-font-size: 18px; -fx-text-fill: #34495e;" />
+        </HBox>
+    </top>
+
+    <center>
+        <ScrollPane fitToHeight="true" fitToWidth="true" pannable="true" style="-fx-background-color: #f4f6f8;">
+            <content>
+                <StackPane alignment="CENTER" style="-fx-background-color: #f4f6f8;">
+                    <!-- Harita Alanı (800x800 Sabit) -->
+                    <Pane fx:id="mapCanvas" maxHeight="800.0" maxWidth="800.0" minHeight="800.0" minWidth="800.0" style="-fx-background-color: white; -fx-border-color: #ccc; -fx-border-width: 1;">
+                        <effect><DropShadow color="#00000040" radius="20" /></effect>
+                    </Pane>
+                </StackPane>
+            </content>
+        </ScrollPane>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER" spacing="30" style="-fx-padding: 15; -fx-background-color: white;">
+            <Label text="Renk Açıklaması:" style="-fx-font-weight: bold;" />
+
+            <HBox spacing="5" alignment="CENTER">
+                <Pane prefWidth="20.0" prefHeight="20.0" style="-fx-background-color: #10b981; -fx-background-radius: 5;" />
+                <Label text="Müsait" />
+            </HBox>
+
+            <HBox spacing="5" alignment="CENTER">
+                <Pane prefWidth="20.0" prefHeight="20.0" style="-fx-background-color: #f59e0b; -fx-background-radius: 5;" />
+                <Label text="Sınırlı" />
+            </HBox>
+
+            <HBox spacing="5" alignment="CENTER">
+                <Pane prefWidth="20.0" prefHeight="20.0" style="-fx-background-color: #64748b; -fx-background-radius: 5;" />
+                <Label text="Dolu" />
+            </HBox>
+        </HBox>
+    </bottom>
+
+</BorderPane>

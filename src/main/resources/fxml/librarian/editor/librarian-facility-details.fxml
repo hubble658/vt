@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane stylesheets="@../../../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.studyflow.app.gui.librarian.LibrarianFacilityDetailsController">
+
+    <!-- ScrollPane Ayarları:
+         fitToWidth="true": İçerik genişliğini pencereye uydurur.
+         hbarPolicy="NEVER": YATAY KAYDIRMAYI KAPATIR.
+         vbarPolicy="AS_NEEDED": Dikey kaydırma gerekirse açılır.
+    -->
+    <ScrollPane fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED" style="-fx-background-color: transparent; -fx-background: transparent;">
+        <content>
+
+            <!-- Hizalama Kutusu: İçeriği ortalamak için -->
+            <VBox alignment="TOP_CENTER" style="-fx-background-color: transparent;">
+                <padding>
+                    <Insets bottom="20.0" top="20.0" />
+                </padding>
+
+                <!-- Asıl İçerik Kartı (Maksimum 600px genişlikte sınırlandı) -->
+                <VBox maxWidth="600.0" spacing="20.0" styleClass="form-card">
+                    <padding>
+                        <Insets bottom="30.0" left="30.0" right="30.0" top="30.0" />
+                    </padding>
+
+                    <!-- 1. TESİS RESMİ -->
+                    <StackPane style="-fx-background-color: #f0f0f0; -fx-background-radius: 5;">
+                        <!-- fitWidth küçültüldü ki kenarlardan taşmasın -->
+                        <ImageView fx:id="facilityImage" fitWidth="500.0" preserveRatio="true" />
+                    </StackPane>
+
+                    <!-- 2. BAŞLIK VE ADRES -->
+                    <VBox spacing="5.0">
+                        <Label fx:id="nameLabel" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #333;" text="Loading Facility Name..." wrapText="true" />
+
+                        <HBox alignment="CENTER_LEFT" spacing="10.0">
+                            <Label styleClass="timer-icon" text="📍" />
+                            <Label fx:id="addressLabel" style="-fx-font-size: 14px; -fx-text-fill: #666;" text="Loading Address..." wrapText="true" />
+                        </HBox>
+                    </VBox>
+
+                    <Separator />
+
+                    <!-- 3. ÇALIŞMA SAATLERİ -->
+                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #4a90e2;" text="Weekly Schedule" />
+
+                    <VBox fx:id="scheduleContainer" spacing="10.0" />
+
+                </VBox>
+            </VBox>
+        </content>
+    </ScrollPane>
+
+</StackPane>

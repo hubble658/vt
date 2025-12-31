@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane stylesheets="@../../../css/styles.css"
+           xmlns="http://javafx.com/javafx/21"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.studyflow.app.gui.user.reservation.UserReservationStep1Controller">
+
+    <!-- ANA LAYOUT -->
+    <BorderPane fx:id="mainLayout"
+                prefHeight="700.0"
+                prefWidth="1200.0">
+
+        <!-- HEADER -->
+        <top>
+            <HBox alignment="CENTER_LEFT"
+                  spacing="20"
+                  style="-fx-background-color: white;
+                         -fx-padding: 20 40;
+                         -fx-border-color: #e0e0e0;
+                         -fx-border-width: 0 0 1 0;">
+                <Button text="← Cancel"
+                        onAction="#handleBack"
+                        styleClass="big-back-button" />
+                <Label text="Step 1: Select Date &amp; Time"
+                       style="-fx-font-size: 24px;
+                              -fx-font-weight: 800;
+                              -fx-text-fill: #2c3e50;" />
+            </HBox>
+        </top>
+
+        <!-- ORTA İÇERİK -->
+        <center>
+            <VBox spacing="30"
+                  alignment="TOP_CENTER"
+                  style="-fx-background-color: #f4f6f8;
+                         -fx-padding: 40 40 40 40;">
+
+                <!-- GUN SECIMI -->
+                <VBox spacing="15"
+                      maxWidth="1000"
+                      alignment="TOP_CENTER">
+                    <Label text="Select a Day"
+                           style="-fx-font-size: 20px;
+                                  -fx-font-weight: bold;
+                                  -fx-text-fill: #555;" />
+                    <HBox fx:id="dayContainer"
+                          spacing="10"
+                          alignment="CENTER"
+                          style="-fx-padding: 5 0 5 0;" />
+                </VBox>
+
+                <Separator maxWidth="1000" />
+
+                <!-- SAAT SEÇİMİ (BÜYÜK KUTULAR) -->
+                <HBox spacing="60"
+                      alignment="CENTER"
+                      maxWidth="1000">
+
+                    <!-- START TIME -->
+                    <VBox spacing="10">
+                        <Label text="Start Time"
+                               style="-fx-font-size: 18px;
+                                      -fx-font-weight: bold;
+                                      -fx-text-fill: #555;" />
+                        <StackPane prefWidth="220"
+                                   prefHeight="60"
+                                   onMouseClicked="#openStartTimeOverlay"
+                                   style="-fx-background-color: white;
+                                          -fx-border-color: #d0d4da;
+                                          -fx-border-radius: 10;
+                                          -fx-background-radius: 10;
+                                          -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 6, 0, 0, 1);">
+                            <HBox alignment="CENTER_LEFT"
+                                  spacing="10"
+                                  style="-fx-padding: 10 16;">
+                                <Label fx:id="startTimeDisplay"
+                                       text="Select"
+                                       style="-fx-font-size: 18px;
+                                              -fx-text-fill: #34495e;" />
+                                <Region HBox.hgrow="ALWAYS" />
+                                <Label text="▾"
+                                       style="-fx-font-size: 18px;
+                                              -fx-text-fill: #95a5a6;" />
+                            </HBox>
+                        </StackPane>
+                    </VBox>
+
+                    <!-- OK İKONU -->
+                    <Label text="➝"
+                           style="-fx-font-size: 32px;
+                                  -fx-text-fill: #ccc;" />
+
+                    <!-- END TIME -->
+                    <VBox spacing="10">
+                        <Label text="End Time"
+                               style="-fx-font-size: 18px;
+                                      -fx-font-weight: bold;
+                                      -fx-text-fill: #555;" />
+                        <StackPane prefWidth="220"
+                                   prefHeight="60"
+                                   onMouseClicked="#openEndTimeOverlay"
+                                   style="-fx-background-color: white;
+                                          -fx-border-color: #d0d4da;
+                                          -fx-border-radius: 10;
+                                          -fx-background-radius: 10;
+                                          -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 6, 0, 0, 1);">
+                            <HBox alignment="CENTER_LEFT"
+                                  spacing="10"
+                                  style="-fx-padding: 10 16;">
+                                <Label fx:id="endTimeDisplay"
+                                       text="Select"
+                                       style="-fx-font-size: 18px;
+                                              -fx-text-fill: #34495e;" />
+                                <Region HBox.hgrow="ALWAYS" />
+                                <Label text="▾"
+                                       style="-fx-font-size: 18px;
+                                              -fx-text-fill: #95a5a6;" />
+                            </HBox>
+                        </StackPane>
+                    </VBox>
+                </HBox>
+
+                <!-- YENI: ONERI KARTI -->
+                <HBox fx:id="suggestionBox"
+                      maxWidth="800"
+                      visible="false"
+                      managed="false"
+                      styleClass="suggestion-card"
+                      alignment="CENTER_LEFT">
+                    <Label text="TIP" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #f39c12;" />
+                    <VBox>
+                        <Label text="StudyFlow Recommendation" styleClass="suggestion-title" />
+                        <Label fx:id="lblSuggestionText" text="Least busy time: --:-- - --:--" styleClass="suggestion-text" />
+                    </VBox>
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Button text="Apply This Time" onAction="#handleApplySuggestion" styleClass="suggestion-btn" />
+                </HBox>
+
+                <Label fx:id="errorLabel"
+                       managed="false"
+                       visible="false"
+                       text="Error message"
+                       style="-fx-text-fill: #e74c3c;
+                              -fx-font-size: 16px;
+                              -fx-font-weight: bold;" />
+
+                <Region VBox.vgrow="ALWAYS" />
+
+                <Button text="Show Available Workspaces →"
+                        onAction="#handleNext"
+                        styleClass="primary-button"
+                        style="-fx-font-size: 20px;
+                               -fx-padding: 18 48;
+                               -fx-background-radius: 30;" />
+            </VBox>
+        </center>
+
+        <!-- SAĞ: WEEKLY SCHEDULE -->
+        <right>
+            <VBox prefWidth="300"
+                  styleClass="sidebar"
+                  spacing="15">
+                <padding>
+                    <Insets top="30" right="20" bottom="20" left="20"/>
+                </padding>
+                <Label text="Weekly Schedule" styleClass="header-label" />
+                <VBox fx:id="weeklyScheduleInfoBox" spacing="10" />
+            </VBox>
+        </right>
+
+    </BorderPane>
+
+    <!-- TIME OVERLAY -->
+    <VBox fx:id="timeOverlay"
+          alignment="CENTER"
+          style="-fx-background-color: rgba(0,0,0,0.45);"
+          visible="false"
+          managed="false">
+
+        <StackPane alignment="CENTER">
+            <VBox maxWidth="620"
+                  maxHeight="620"
+                  spacing="24"
+                  style="-fx-background-color: white;
+                         -fx-background-radius: 22;
+                         -fx-padding: 28 32 28 32;
+                         -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.45), 25, 0, 0, 0);">
+
+                <Label fx:id="overlayTitleLabel"
+                       text="Select Time"
+                       style="-fx-font-size: 26px;
+                              -fx-font-weight: 800;
+                              -fx-text-fill: #1f2933;" />
+                <Separator />
+                <ScrollPane fitToWidth="true"
+                            prefViewportHeight="380"
+                            hbarPolicy="NEVER"
+                            style="-fx-background-color: transparent;
+                                   -fx-background-insets: 0;
+                                   -fx-padding: 0;">
+                    <content>
+                        <VBox fx:id="overlayTimesBox"
+                              spacing="20"
+                              alignment="CENTER"
+                              fillWidth="false"
+                              style="-fx-padding: 6 0 6 0;" />
+                    </content>
+                </ScrollPane>
+                <HBox alignment="CENTER_RIGHT" spacing="10">
+                    <Region HBox.hgrow="ALWAYS" />
+                    <Button text="Cancel"
+                            onAction="#hideTimeOverlay"
+                            styleClass="danger-button"
+                            style="-fx-font-size: 18px;
+                                   -fx-padding: 12 28;" />
+                </HBox>
+            </VBox>
+        </StackPane>
+    </VBox>
+
+</StackPane>
