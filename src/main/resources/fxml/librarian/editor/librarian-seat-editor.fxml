@@ -16,12 +16,12 @@
     <top>
         <HBox alignment="CENTER_LEFT" spacing="10"
               style="-fx-background-color: white; -fx-padding: 10; -fx-border-color: #ddd; -fx-border-width: 0 0 1 0;">
-            <Label text="Seat Layout Editor"
+            <Label text="Koltuk Duzen Editoru"
                    style="-fx-font-weight: bold; -fx-text-fill: #555;">
                 <font><Font size="14.0" /></font>
             </Label>
 
-            <Label fx:id="lblBreadcrumb" text=" > Select a Block"
+            <Label fx:id="lblBreadcrumb" text=" > Bir Blok Secin"
                    style="-fx-text-fill: #888;" />
 
             <Region HBox.hgrow="ALWAYS" />
@@ -97,7 +97,7 @@
                     </children>
                 </Pane>
 
-                <Label text="Drag seats around the desk edges"
+                <Label text="Koltuklari masa kenarlarina surukleyin"
                        StackPane.alignment="TOP_CENTER"
                        style="-fx-background-color: rgba(255,255,255,0.9); -fx-padding: 5 15; -fx-background-radius: 5; -fx-text-fill: #555; -fx-font-weight: bold;">
                     <StackPane.margin>
@@ -124,16 +124,16 @@
                   visible="true"
                   alignment="CENTER">
                 <Label fx:id="lblSidebarTitle"
-                       text="Select a Block"
+                       text="Bir Blok Secin"
                        style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #888;" />
                 <Label fx:id="lblSidebarDesc"
-                       text="Navigate: Block → Desk → Seat"
+                       text="Gezinme: Blok → Masa → Koltuk"
                        wrapText="true"
                        textAlignment="CENTER"
                        style="-fx-text-fill: #999;" />
 
                 <Button fx:id="btnBackToBlocks"
-                        text="← Change Block"
+                        text="← Blogu Degistir"
                         onAction="#handleBackToBlocks"
                         visible="false"
                         managed="false"
@@ -154,13 +154,13 @@
                     <Insets bottom="20" left="20" right="20" top="20" />
                 </padding>
 
-                <Label styleClass="header-label" text="Seat Editor" />
+                <Label styleClass="header-label" text="Koltuk Editoru" />
                 <Label fx:id="lblCurrentDeskInfo"
                        styleClass="sub-header-label"
-                       text="Desk: -" />
+                       text="Masa: -" />
                 <Label fx:id="lblRangeInfo"
                        style="-fx-font-size: 11px; -fx-text-fill: #e67e22;"
-                       text="Range: -" />
+                       text="Aralik: -" />
 
                 <Separator />
 
@@ -168,7 +168,7 @@
                 <Button maxWidth="Infinity"
                         onAction="#handleAddNewSeat"
                         styleClass="primary-button"
-                        text="+ Add Seat Around Desk" />
+                        text="+ Masa Etrafina Koltuk Ekle" />
 
                 <Separator />
 
@@ -179,17 +179,17 @@
 
                     <Label fx:id="lblSelectedSeatInfo"
                            style="-fx-font-weight: bold; -fx-text-fill: #2c3e50;"
-                           text="No Selection" />
+                           text="Secim Yok" />
 
                     <VBox spacing="5">
-                        <Label text="Seat Number (ID)"
+                        <Label text="Koltuk Numarasi (ID)"
                                style="-fx-font-size: 12px; -fx-text-fill: #7f8c8d;" />
                         <Spinner fx:id="seatNumSpinner"
                                  editable="true"
                                  maxWidth="Infinity" />
                     </VBox>
 
-                    <Label text="Fine Tune Position (Drag or Slide)"
+                    <Label text="Hassas Konumlandirma (Surukle veya Kaydir)"
                            style="-fx-font-weight: bold; -fx-font-size: 12px; -fx-padding: 5 0 0 0;" />
 
                     <VBox spacing="2">
@@ -204,7 +204,7 @@
                     <Button maxWidth="Infinity"
                             onAction="#handleDeleteSeat"
                             styleClass="danger-button"
-                            text="Delete Selected Seat" />
+                            text="Secili Koltugu Sil" />
                 </VBox>
 
                 <Separator />
@@ -213,13 +213,13 @@
                         maxWidth="Infinity"
                         onAction="#handleUndo"
                         styleClass="link-button"
-                        text="↩ Undo" />
+                        text="↩ Geri Al" />
 
                 <Button fx:id="btnSave"
                         maxWidth="Infinity"
                         onAction="#handleSaveChanges"
                         styleClass="success-button"
-                        text="Save Changes" />
+                        text="Degisiklikleri Kaydet" />
 
                 <Label fx:id="statusLabel"
                        managed="false"
@@ -230,7 +230,7 @@
 
                 <Button onAction="#handleExit"
                         styleClass="link-button"
-                        text="Cancel &amp; Exit" />
+                        text="Iptal &amp; Cikis" />
             </VBox>
         </StackPane>
     </right>

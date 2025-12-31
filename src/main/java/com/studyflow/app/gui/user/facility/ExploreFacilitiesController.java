@@ -26,12 +26,17 @@ import java.util.Objects;
 @Component
 public class ExploreFacilitiesController {
 
-    @FXML private ComboBox<String> sortComboBox;
-    @FXML private FlowPane facilityGrid;
+    @FXML
+    private ComboBox<String> sortComboBox;
+    @FXML
+    private FlowPane facilityGrid;
 
-    @Autowired private FacilityService facilityService;
-    @Autowired private UserHomeController userHomeController; // Layout değişimi için
-    @Autowired private GlobalParamsContext globalParams; // Veri taşıma için
+    @Autowired
+    private FacilityService facilityService;
+    @Autowired
+    private UserHomeController userHomeController; // Layout değişimi için
+    @Autowired
+    private GlobalParamsContext globalParams; // Veri taşıma için
 
     @FXML
     public void initialize() {
@@ -58,7 +63,7 @@ public class ExploreFacilitiesController {
         List<Facility> facilities = facilityService.getAllFacilities(order);
 
         if (facilities == null || facilities.isEmpty()) {
-            Label emptyLabel = new Label("No facilities found.");
+            Label emptyLabel = new Label("Tesis bulunamadi.");
             emptyLabel.setStyle("-fx-font-size: 18px; -fx-text-fill: #999;");
             facilityGrid.getChildren().add(emptyLabel);
             return;
@@ -79,7 +84,8 @@ public class ExploreFacilitiesController {
         imageView.setFitWidth(298);
         imageView.setFitHeight(160);
         Rectangle clip = new Rectangle(298, 160);
-        clip.setArcWidth(10); clip.setArcHeight(10);
+        clip.setArcWidth(10);
+        clip.setArcHeight(10);
         imageView.setClip(clip);
 
         try {
@@ -92,11 +98,13 @@ public class ExploreFacilitiesController {
                     // Local resource'dan yukle
                     String imagePath = "/facility/" + imageUrl;
                     if (getClass().getResource(imagePath) != null) {
-                        imageView.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath))));
+                        imageView
+                                .setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(imagePath))));
                     }
                 }
             }
-        } catch (Exception e) { }
+        } catch (Exception e) {
+        }
 
         VBox infoBox = new VBox(5);
         infoBox.setPadding(new Insets(15));
@@ -109,7 +117,7 @@ public class ExploreFacilitiesController {
         addressLabel.getStyleClass().add("facility-address");
         addressLabel.setWrapText(true);
 
-        Button viewButton = new Button("View & Reserve");
+        Button viewButton = new Button("Goruntule & Rezerve Et");
         viewButton.getStyleClass().add("primary-button");
         viewButton.setMaxWidth(Double.MAX_VALUE);
 

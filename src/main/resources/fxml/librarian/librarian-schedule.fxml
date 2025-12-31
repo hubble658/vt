@@ -22,8 +22,8 @@
         <!-- HEADER -->
         <HBox alignment="CENTER_LEFT" spacing="20">
             <VBox spacing="5">
-                <Label text="Update Working Hours" style="-fx-font-size: 32px; -fx-font-weight: 800; -fx-text-fill: #1a1a2e;"/>
-                <Label text="Manage your facility's weekly schedule" style="-fx-font-size: 16px; -fx-text-fill: #6b7280;"/>
+                <Label text="Calisma Saatlerini Guncelle" style="-fx-font-size: 32px; -fx-font-weight: 800; -fx-text-fill: #1a1a2e;"/>
+                <Label text="Tesisinizin haftalik programini yonetin" style="-fx-font-size: 16px; -fx-text-fill: #6b7280;"/>
             </VBox>
         </HBox>
         
@@ -31,23 +31,23 @@
         
         <!-- MAIN CONTENT -->
         <VBox styleClass="stat-card" spacing="20" maxWidth="800">
-            <Label text="Weekly Schedule Form" style="-fx-font-size: 18px; -fx-font-weight: 700; -fx-text-fill: #333;"/>
+            <Label text="Haftalik Program Formu" style="-fx-font-size: 18px; -fx-font-weight: 700; -fx-text-fill: #333;"/>
             
             <VBox spacing="20">
                 <VBox spacing="8">
-                    <Label text="Day of Week" style="-fx-font-size: 14px; -fx-text-fill: #666;"/>
-                    <ComboBox fx:id="dayComboBox" maxWidth="Infinity" promptText="Select a day" styleClass="text-field"/>
+                    <Label text="Haftanin Gunu" style="-fx-font-size: 14px; -fx-text-fill: #666;"/>
+                    <ComboBox fx:id="dayComboBox" maxWidth="Infinity" promptText="Bir gun secin" styleClass="text-field"/>
                 </VBox>
 
-                <CheckBox fx:id="closedCheckBox" text="Facility is closed on this day" style="-fx-font-size: 14px;"/>
+                <CheckBox fx:id="closedCheckBox" text="Tesis bu gun kapali" style="-fx-font-size: 14px;"/>
 
                 <HBox fx:id="timeContainer" spacing="20">
                     <VBox HBox.hgrow="ALWAYS" spacing="8">
-                        <Label text="Open Time" style="-fx-font-size: 14px; -fx-text-fill: #666;"/>
+                        <Label text="Acilis Saati" style="-fx-font-size: 14px; -fx-text-fill: #666;"/>
                         <ComboBox fx:id="openTimeBox" maxWidth="Infinity" promptText="09:00" styleClass="text-field"/>
                     </VBox>
                     <VBox HBox.hgrow="ALWAYS" spacing="8">
-                        <Label text="Close Time" style="-fx-font-size: 14px; -fx-text-fill: #666;"/>
+                        <Label text="Kapanis Saati" style="-fx-font-size: 14px; -fx-text-fill: #666;"/>
                         <ComboBox fx:id="closeTimeBox" maxWidth="Infinity" promptText="17:00" styleClass="text-field"/>
                     </VBox>
                 </HBox>
@@ -55,7 +55,7 @@
 
             <Label fx:id="statusLabel" managed="false" visible="false" wrapText="true" style="-fx-font-size: 14px; -fx-padding: 10 0;"/>
             
-            <Button text="Update Schedule" onAction="#handleAddSchedule" styleClass="primary-button" 
+            <Button text="Programi Guncelle" onAction="#handleAddSchedule" styleClass="primary-button" 
                     style="-fx-padding: 12 30; -fx-font-size: 14px;" maxWidth="Infinity"/>
         </VBox>
         

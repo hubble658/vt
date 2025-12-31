@@ -23,11 +23,11 @@
         <!-- HEADER -->
         <HBox alignment="CENTER_LEFT" spacing="20">
             <VBox spacing="5">
-                <Label text="Facilities Dashboard" style="-fx-font-size: 32px; -fx-font-weight: 800; -fx-text-fill: #1a1a2e;"/>
-                <Label text="Overview of all study facilities and statistics" style="-fx-font-size: 16px; -fx-text-fill: #6b7280;"/>
+                <Label text="Tesis Paneli" style="-fx-font-size: 32px; -fx-font-weight: 800; -fx-text-fill: #1a1a2e;"/>
+                <Label text="Tum calisma tesislerine ve istatistiklere genel bakis" style="-fx-font-size: 16px; -fx-text-fill: #6b7280;"/>
             </VBox>
             <Region HBox.hgrow="ALWAYS"/>
-            <Button text="+ Create New Facility" onAction="#handleGoToCreateFacility" styleClass="primary-button" 
+            <Button text="+ Yeni Tesis Olustur" onAction="#handleGoToCreateFacility" styleClass="primary-button" 
                     style="-fx-padding: 12 24; -fx-font-size: 14px;"/>
         </HBox>
         
@@ -38,7 +38,7 @@
                 <HBox alignment="CENTER_LEFT" spacing="15">
                     <Label text="LIB" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #4a90e2;"/>
                     <VBox>
-                        <Label text="Total Facilities" style="-fx-font-size: 14px; -fx-text-fill: #6b7280;"/>
+                        <Label text="Toplam Tesis" style="-fx-font-size: 14px; -fx-text-fill: #6b7280;"/>
                         <Label fx:id="totalFacilitiesLabel" text="0" style="-fx-font-size: 28px; -fx-font-weight: 800; -fx-text-fill: #4a90e2;"/>
                     </VBox>
                 </HBox>
@@ -48,7 +48,7 @@
                 <HBox alignment="CENTER_LEFT" spacing="15">
                     <Label text="USR" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #27ae60;"/>
                     <VBox>
-                        <Label text="Total Users" style="-fx-font-size: 14px; -fx-text-fill: #6b7280;"/>
+                        <Label text="Toplam Kullanici" style="-fx-font-size: 14px; -fx-text-fill: #6b7280;"/>
                         <Label fx:id="totalUsersLabel" text="0" style="-fx-font-size: 28px; -fx-font-weight: 800; -fx-text-fill: #27ae60;"/>
                     </VBox>
                 </HBox>
@@ -58,7 +58,7 @@
                 <HBox alignment="CENTER_LEFT" spacing="15">
                     <Label text="SEAT" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #9b59b6;"/>
                     <VBox>
-                        <Label text="Total Seats" style="-fx-font-size: 14px; -fx-text-fill: #6b7280;"/>
+                        <Label text="Toplam Koltuk" style="-fx-font-size: 14px; -fx-text-fill: #6b7280;"/>
                         <Label fx:id="totalSeatsLabel" text="0" style="-fx-font-size: 28px; -fx-font-weight: 800; -fx-text-fill: #9b59b6;"/>
                     </VBox>
                 </HBox>
@@ -68,7 +68,7 @@
                 <HBox alignment="CENTER_LEFT" spacing="15">
                     <Label text="RES" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #e67e22;"/>
                     <VBox>
-                        <Label text="Active Reservations" style="-fx-font-size: 14px; -fx-text-fill: #6b7280;"/>
+                        <Label text="Aktif Rezervasyonlar" style="-fx-font-size: 14px; -fx-text-fill: #6b7280;"/>
                         <Label fx:id="activeReservationsLabel" text="0" style="-fx-font-size: 28px; -fx-font-weight: 800; -fx-text-fill: #e67e22;"/>
                     </VBox>
                 </HBox>
@@ -79,7 +79,7 @@
                 <HBox alignment="CENTER_LEFT" spacing="15">
                     <Label text="OCC" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #e74c3c;"/>
                     <VBox>
-                        <Label text="Today's Occupancy" style="-fx-font-size: 14px; -fx-text-fill: #6b7280;"/>
+                        <Label text="Bugunku Doluluk" style="-fx-font-size: 14px; -fx-text-fill: #6b7280;"/>
                         <Label fx:id="occupancyRateLabel" text="0%" style="-fx-font-size: 28px; -fx-font-weight: 800; -fx-text-fill: #e74c3c;"/>
                     </VBox>
                 </HBox>
@@ -89,7 +89,7 @@
                 <HBox alignment="CENTER_LEFT" spacing="15">
                     <Label text="BLK" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #3498db;"/>
                     <VBox>
-                        <Label text="Total Blocks" style="-fx-font-size: 14px; -fx-text-fill: #6b7280;"/>
+                        <Label text="Toplam Bloklar" style="-fx-font-size: 14px; -fx-text-fill: #6b7280;"/>
                         <Label fx:id="totalBlocksLabel" text="0" style="-fx-font-size: 28px; -fx-font-weight: 800; -fx-text-fill: #3498db;"/>
                     </VBox>
                 </HBox>
@@ -99,7 +99,7 @@
                 <HBox alignment="CENTER_LEFT" spacing="15">
                     <Label text="DSK" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #1abc9c;"/>
                     <VBox>
-                        <Label text="Total Desks" style="-fx-font-size: 14px; -fx-text-fill: #6b7280;"/>
+                        <Label text="Toplam Masalar" style="-fx-font-size: 14px; -fx-text-fill: #6b7280;"/>
                         <Label fx:id="totalDesksLabel" text="0" style="-fx-font-size: 28px; -fx-font-weight: 800; -fx-text-fill: #1abc9c;"/>
                     </VBox>
                 </HBox>
@@ -109,7 +109,7 @@
                 <HBox alignment="CENTER_LEFT" spacing="15">
                     <Label text="STF" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #8e44ad;"/>
                     <VBox>
-                        <Label text="Librarians" style="-fx-font-size: 14px; -fx-text-fill: #6b7280;"/>
+                        <Label text="Kutuphaneciler" style="-fx-font-size: 14px; -fx-text-fill: #6b7280;"/>
                         <Label fx:id="totalLibrariansLabel" text="0" style="-fx-font-size: 28px; -fx-font-weight: 800; -fx-text-fill: #8e44ad;"/>
                     </VBox>
                 </HBox>
@@ -123,16 +123,16 @@
             
             <!-- SOL: REZERVASYON DAGILIMI -->
             <VBox styleClass="stat-card" spacing="15" prefWidth="450" prefHeight="350">
-                <Label text="Reservation Status Distribution" style="-fx-font-size: 18px; -fx-font-weight: 700; -fx-text-fill: #333;"/>
+                <Label text="Rezervasyon Durum Dagilimi" style="-fx-font-size: 18px; -fx-font-weight: 700; -fx-text-fill: #333;"/>
                 <PieChart fx:id="reservationPieChart" prefHeight="280" legendVisible="true"/>
             </VBox>
             
             <!-- SAG: TOP FACILITIES -->
             <VBox styleClass="stat-card" spacing="15" HBox.hgrow="ALWAYS" prefHeight="350">
                 <HBox alignment="CENTER_LEFT">
-                    <Label text="Top Facilities" style="-fx-font-size: 18px; -fx-font-weight: 700; -fx-text-fill: #333;"/>
+                    <Label text="Populer Tesisler" style="-fx-font-size: 18px; -fx-font-weight: 700; -fx-text-fill: #333;"/>
                     <Region HBox.hgrow="ALWAYS"/>
-                    <Button text="View All" onAction="#handleViewAllFacilities" style="-fx-background-color: transparent; -fx-text-fill: #4a90e2; -fx-cursor: hand;"/>
+                    <Button text="Tumunu Gor" onAction="#handleViewAllFacilities" style="-fx-background-color: transparent; -fx-text-fill: #4a90e2; -fx-cursor: hand;"/>
                 </HBox>
                 <FlowPane fx:id="topFacilitiesPane" hgap="15" vgap="15"/>
             </VBox>

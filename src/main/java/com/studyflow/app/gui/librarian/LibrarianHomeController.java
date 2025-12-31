@@ -1,11 +1,7 @@
 package com.studyflow.app.gui.librarian;
 
 import com.studyflow.app.context.UserSessionContext;
-import com.studyflow.app.gui.NavigationService;
-import com.studyflow.app.gui.ViewFactory;
-import com.studyflow.app.service.facility.FacilityService;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
@@ -18,10 +14,7 @@ import org.springframework.stereotype.Component;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Locale;
-import java.time.format.TextStyle;
 
 @Component
 public class LibrarianHomeController {
@@ -59,12 +52,6 @@ public class LibrarianHomeController {
     private BarChart<String, Number> weeklyBarChart;
 
     @Autowired
-    private NavigationService navigationService;
-
-    @Autowired
-    private ViewFactory viewFactory;
-
-    @Autowired
     private UserSessionContext userSessionContext;
 
     @Autowired
@@ -80,18 +67,18 @@ public class LibrarianHomeController {
         try {
             Long facilityId = userSessionContext.getAssignedFacilityId();
             if (facilityId == null) {
-                facilityNameLabel.setText("Facility: Not assigned");
+                facilityNameLabel.setText("Tesis: Atanmadi");
                 return;
             }
 
             // Tesis adını al
             String facilityName = jdbcTemplate.queryForObject(
                     "SELECT name FROM facilities WHERE id = ?", String.class, facilityId);
-            facilityNameLabel.setText("Facility: " + facilityName);
+            facilityNameLabel.setText("Tesis: " + facilityName);
 
             // Bugünün tarihini göster
             currentDateLabel
-                    .setText(LocalDate.now().format(DateTimeFormatter.ofPattern("EEEE, d MMMM yyyy", Locale.ENGLISH)));
+                    .setText(LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 
             // Tesis istatistikleri
             Integer blocks = jdbcTemplate.queryForObject(
@@ -130,9 +117,9 @@ public class LibrarianHomeController {
             // Doluluk gösterimi
             occupancyPercentLabel.setText(String.format("%.1f%%", occupancyRate));
             occupancyProgressBar.setProgress(occupancyRate / 100.0);
-            occupiedSeatsLabel.setText("🟢 Occupied: " + occupied);
-            availableSeatsLabel.setText("⚪ Available: " + (total - occupied));
-            totalSeatsInfoLabel.setText("📊 Total: " + total + " seats");
+            occupiedSeatsLabel.setText("🟢 Dolu: " + occupied);
+            availableSeatsLabel.setText("⚪ Musait: " + (total - occupied));
+            totalSeatsInfoLabel.setText("📊 Toplam: " + total + " koltuk");
 
             // Progress bar rengini ayarla
             if (occupancyRate > 80) {
@@ -155,10 +142,10 @@ public class LibrarianHomeController {
     private void loadWeeklyChart(Long facilityId) {
         try {
             XYChart.Series<String, Number> series = new XYChart.Series<>();
-            series.setName("Reservations");
+            series.setName("Rezervasyonlar");
 
             LocalDate today = LocalDate.now();
-            String[] dayNames = { "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" };
+            String[] dayNames = { "Pzt", "Sal", "Car", "Per", "Cum", "Cmt", "Paz" };
 
             for (int i = 0; i < 7; i++) {
                 LocalDate date = today.with(DayOfWeek.MONDAY).plusDays(i);
@@ -168,7 +155,7 @@ public class LibrarianHomeController {
 
                 String dayLabel = dayNames[i];
                 if (date.equals(today)) {
-                    dayLabel += " (Today)";
+                    dayLabel += " (Bugun)";
                 }
 
                 series.getData().add(new XYChart.Data<>(dayLabel, count != null ? count : 0));
@@ -180,7 +167,7 @@ public class LibrarianHomeController {
 
             // Bar renklerini ayarla
             for (XYChart.Data<String, Number> data : series.getData()) {
-                if (data.getXValue().contains("Today")) {
+                if (data.getXValue().contains("Bugun")) {
                     data.getNode().setStyle("-fx-bar-fill: #4a90e2;");
                 } else {
                     data.getNode().setStyle("-fx-bar-fill: #95a5a6;");

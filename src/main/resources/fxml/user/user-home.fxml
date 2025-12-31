@@ -35,7 +35,7 @@
    <bottom>
       <VBox styleClass="app-footer">
          <!-- Metin Güncellendi ve Stil Sınıfı Eklendi -->
-         <Label styleClass="footer-text" text="© 2025 StudyFlow. All Rights Reserved." />
+         <Label styleClass="footer-text" text="© 2025 StudyFlow. Tum Haklari Saklidir." />
       </VBox>
    </bottom>
 

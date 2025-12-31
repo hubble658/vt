@@ -28,22 +28,33 @@ import java.util.Optional;
 @Component
 public class UserReservationsController {
 
-    @FXML private Label userNameLabel;
+    @FXML
+    private Label userNameLabel;
 
     // Toggle Butonları
-    @FXML private ToggleButton btnActive;
-    @FXML private ToggleButton btnExpired;
-    @FXML private ToggleGroup viewToggleGroup;
+    @FXML
+    private ToggleButton btnActive;
+    @FXML
+    private ToggleButton btnExpired;
+    @FXML
+    private ToggleGroup viewToggleGroup;
 
     // Liste Konteynırları
-    @FXML private ScrollPane scrollActive;
-    @FXML private ScrollPane scrollExpired;
-    @FXML private VBox activeContainer;
-    @FXML private VBox pastContainer;
+    @FXML
+    private ScrollPane scrollActive;
+    @FXML
+    private ScrollPane scrollExpired;
+    @FXML
+    private VBox activeContainer;
+    @FXML
+    private VBox pastContainer;
 
-    @Autowired private ReservationService reservationService;
-    @Autowired private UserSessionContext userSessionContext;
-    @Autowired private UserHomeController userHomeController;
+    @Autowired
+    private ReservationService reservationService;
+    @Autowired
+    private UserSessionContext userSessionContext;
+    @Autowired
+    private UserHomeController userHomeController;
 
     private final DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("EEEE, dd MMM yyyy");
     private final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
@@ -53,8 +64,7 @@ public class UserReservationsController {
         if (userSessionContext.getCurrentUser() != null) {
             userNameLabel.setText(
                     userSessionContext.getCurrentUser().getFirstName() + " " +
-                            userSessionContext.getCurrentUser().getLastName()
-            );
+                            userSessionContext.getCurrentUser().getLastName());
         }
 
         // Listeleri yükle
@@ -96,7 +106,7 @@ public class UserReservationsController {
         List<Reservation> list = reservationService.getCurrentUserActiveReservations();
 
         if (list == null || list.isEmpty()) {
-            activeContainer.getChildren().add(createEmptyState("No upcoming reservations."));
+            activeContainer.getChildren().add(createEmptyState("Yaklasan rezervasyon yok."));
             return;
         }
         for (Reservation r : list) {
@@ -110,7 +120,7 @@ public class UserReservationsController {
         List<Reservation> list = reservationService.getCurrentUserPastReservations();
 
         if (list == null || list.isEmpty()) {
-            pastContainer.getChildren().add(createEmptyState("No reservation history."));
+            pastContainer.getChildren().add(createEmptyState("Gecmis rezervasyon yok."));
             return;
         }
         for (Reservation r : list) {
@@ -131,7 +141,7 @@ public class UserReservationsController {
         header.getStyleClass().add("ticket-header");
         header.setAlignment(Pos.CENTER_LEFT);
 
-        String facilityName = (r.getFacility() != null) ? r.getFacility().getName() : "Unknown Facility";
+        String facilityName = (r.getFacility() != null) ? r.getFacility().getName() : "Bilinmeyen Tesis";
         Label lblFacility = new Label(facilityName);
         lblFacility.setStyle("-fx-font-weight: 800; -fx-font-size: 18px; -fx-text-fill: #111827;");
 
@@ -150,15 +160,16 @@ public class UserReservationsController {
 
         // TIME
         VBox timeBox = new VBox(4);
-        Label lblTimeTitle = new Label("TIME");
+        Label lblTimeTitle = new Label("ZAMAN");
         lblTimeTitle.setStyle("-fx-font-size: 10px; -fx-font-weight: 700; -fx-text-fill: #9ca3af;");
-        Label lblTimeVal = new Label(r.getStartTime().format(timeFormatter) + " - " + r.getEndTime().format(timeFormatter));
+        Label lblTimeVal = new Label(
+                r.getStartTime().format(timeFormatter) + " - " + r.getEndTime().format(timeFormatter));
         lblTimeVal.setStyle("-fx-font-size: 18px; -fx-font-weight: 800; -fx-text-fill: #111827;");
         timeBox.getChildren().addAll(lblTimeTitle, lblTimeVal);
 
         // LOCATION
         VBox locBox = new VBox(4);
-        Label lblLocTitle = new Label("WORKSPACE");
+        Label lblLocTitle = new Label("CALISMA ALANI");
         lblLocTitle.setStyle("-fx-font-size: 10px; -fx-font-weight: 700; -fx-text-fill: #9ca3af;");
 
         String blockName = (r.getFacilityBlock() != null) ? r.getFacilityBlock().getName() : "-";
@@ -166,48 +177,49 @@ public class UserReservationsController {
         String deskText = "-";
         if (r.getDesk() != null) {
             if (r.getDesk().getIdRange() != null && !r.getDesk().getIdRange().isBlank()) {
-                deskText = "Desk " + r.getDesk().getIdRange();
+                deskText = "Masa " + r.getDesk().getIdRange();
             } else {
-                deskText = "Desk " + r.getDesk().getId();
+                deskText = "Masa " + r.getDesk().getId();
             }
         } else if (r.getSeat() != null && r.getSeat().getDesk() != null) {
             if (r.getSeat().getDesk().getIdRange() != null && !r.getSeat().getDesk().getIdRange().isBlank()) {
-                deskText = "Desk " + r.getSeat().getDesk().getIdRange();
+                deskText = "Masa " + r.getSeat().getDesk().getIdRange();
             } else {
-                deskText = "Desk " + r.getSeat().getDesk().getId();
+                deskText = "Masa " + r.getSeat().getDesk().getId();
             }
         }
 
         String seatNum = (r.getSeat() != null) ? String.valueOf(r.getSeat().getSeatNumber()) : "?";
 
-        Label lblLocMain = new Label(blockName + " - " + deskText + " - Seat #" + seatNum);
+        Label lblLocMain = new Label(blockName + " - " + deskText + " - Koltuk #" + seatNum);
         lblLocMain.setStyle("-fx-font-size: 14px; -fx-font-weight: 600; -fx-text-fill: #111827;");
         locBox.getChildren().addAll(lblLocTitle, lblLocMain);
 
         // CHIP ve BUTONLAR
         Region spacer2 = new Region();
         HBox.setHgrow(spacer2, Priority.ALWAYS);
-        
+
         VBox actionBox = new VBox(8);
         actionBox.setAlignment(Pos.CENTER_RIGHT);
-        
+
         // Status Label
-        String statusText = isActive ? "ACTIVE" : (r.getStatus() != null ? r.getStatus() : "EXPIRED");
+        String statusText = isActive ? "AKTIF" : (r.getStatus() != null ? r.getStatus() : "GECMIS");
         Label lblStatus = new Label(statusText);
         lblStatus.getStyleClass().add(isActive ? "chip-active" : "chip-past");
         if ("CANCELLED".equals(r.getStatus())) {
             lblStatus.getStyleClass().clear();
             lblStatus.getStyleClass().add("chip-cancelled");
-            lblStatus.setStyle("-fx-background-color: #FEE2E2; -fx-text-fill: #DC2626; -fx-padding: 4 12; -fx-background-radius: 20; -fx-font-weight: 700;");
+            lblStatus.setStyle(
+                    "-fx-background-color: #FEE2E2; -fx-text-fill: #DC2626; -fx-padding: 4 12; -fx-background-radius: 20; -fx-font-weight: 700;");
         }
-        
+
         actionBox.getChildren().add(lblStatus);
 
         // Aktif rezervasyonlar için iptal ve güncelleme butonları - HER ZAMAN GÖSTER
         if (isActive) {
             HBox buttonBox = new HBox(8);
             buttonBox.setAlignment(Pos.CENTER_RIGHT);
-            
+
             // Güncelle butonu
             Button btnUpdate = new Button("Guncelle");
             btnUpdate.setStyle("-fx-background-color: #3B82F6; -fx-text-fill: white; -fx-font-size: 12px; " +
@@ -216,12 +228,12 @@ public class UserReservationsController {
                 if (r.isCancellable()) {
                     showUpdateDialog(r);
                 } else {
-                    showErrorAlert("Güncelleme Yapılamaz", 
+                    showErrorAlert("Guncelleme Yapilamaz",
                             "Rezervasyon baslangicina 1 saatten az kaldigi icin guncelleme yapilamaz.\n\n" +
-                            "Rezervasyon başlangıç zamanı: " + r.getReservationDate() + " " + r.getStartTime());
+                                    "Rezervasyon baslangic zamani: " + r.getReservationDate() + " " + r.getStartTime());
                 }
             });
-            
+
             // İptal butonu
             Button btnCancel = new Button("Iptal Et");
             btnCancel.setStyle("-fx-background-color: #EF4444; -fx-text-fill: white; -fx-font-size: 12px; " +
@@ -230,15 +242,15 @@ public class UserReservationsController {
                 if (r.isCancellable()) {
                     showCancelDialog(r);
                 } else {
-                    showErrorAlert("İptal Yapılamaz", 
+                    showErrorAlert("Iptal Yapilamaz",
                             "Rezervasyon baslangicina 1 saatten az kaldigi icin iptal edilemez.\n\n" +
-                            "Rezervasyon başlangıç zamanı: " + r.getReservationDate() + " " + r.getStartTime());
+                                    "Rezervasyon baslangic zamani: " + r.getReservationDate() + " " + r.getStartTime());
                 }
             });
-            
+
             buttonBox.getChildren().addAll(btnUpdate, btnCancel);
             actionBox.getChildren().add(buttonBox);
-            
+
             // İptal için kalan süre bilgisi
             if (r.isCancellable()) {
                 String deadlineInfo = reservationService.getCancellationDeadlineInfo(r.getId());
@@ -260,8 +272,8 @@ public class UserReservationsController {
     /* ------------------ İPTAL DİALOGU ------------------ */
     private void showCancelDialog(Reservation reservation) {
         Dialog<String> dialog = new Dialog<>();
-        dialog.setTitle("Rezervasyon İptali");
-        dialog.setHeaderText("Rezervasyonu iptal etmek istediğinize emin misiniz?");
+        dialog.setTitle("Rezervasyon Iptali");
+        dialog.setHeaderText("Rezervasyonu iptal etmek istediginize emin misiniz?");
         dialog.initModality(Modality.APPLICATION_MODAL);
 
         // Dialog içeriği
@@ -272,16 +284,16 @@ public class UserReservationsController {
         // Rezervasyon bilgileri
         Label infoLabel = new Label(
                 reservation.getFacility().getName() + "\n" +
-                "📅 " + reservation.getReservationDate().format(dateFormatter) + "\n" +
-                "⏰ " + reservation.getStartTime().format(timeFormatter) + " - " + reservation.getEndTime().format(timeFormatter)
-        );
+                        "📅 " + reservation.getReservationDate().format(dateFormatter) + "\n" +
+                        "⏰ " + reservation.getStartTime().format(timeFormatter) + " - "
+                        + reservation.getEndTime().format(timeFormatter));
         infoLabel.setStyle("-fx-font-size: 14px; -fx-text-fill: #374151;");
 
         // İptal nedeni
-        Label reasonLabel = new Label("İptal Nedeni (Opsiyonel):");
+        Label reasonLabel = new Label("Iptal Nedeni (Opsiyonel):");
         reasonLabel.setStyle("-fx-font-weight: 600;");
         TextArea reasonField = new TextArea();
-        reasonField.setPromptText("İptal nedeninizi yazın...");
+        reasonField.setPromptText("Iptal nedeninizi yazin...");
         reasonField.setPrefRowCount(3);
         reasonField.setMaxWidth(400);
 
@@ -293,8 +305,8 @@ public class UserReservationsController {
         dialog.getDialogPane().setContent(content);
 
         // Butonlar
-        ButtonType cancelButtonType = new ButtonType("İptal Et", ButtonBar.ButtonData.OK_DONE);
-        ButtonType closeButtonType = new ButtonType("Vazgeç", ButtonBar.ButtonData.CANCEL_CLOSE);
+        ButtonType cancelButtonType = new ButtonType("Iptal Et", ButtonBar.ButtonData.OK_DONE);
+        ButtonType closeButtonType = new ButtonType("Vazgec", ButtonBar.ButtonData.CANCEL_CLOSE);
         dialog.getDialogPane().getButtonTypes().addAll(cancelButtonType, closeButtonType);
 
         // İptal butonu stillendir
@@ -312,12 +324,12 @@ public class UserReservationsController {
         result.ifPresent(reason -> {
             try {
                 String message = reservationService.cancelReservation(reservation.getId(), reason);
-                showSuccessAlert("İptal Başarılı", message);
+                showSuccessAlert("Iptal Basarili", message);
                 // Listeyi yenile
                 loadActiveReservations();
                 loadPastReservations();
             } catch (Exception e) {
-                showErrorAlert("İptal Hatası", e.getMessage());
+                showErrorAlert("Iptal Hatasi", e.getMessage());
             }
         });
     }
@@ -337,12 +349,13 @@ public class UserReservationsController {
         // Mevcut bilgiler
         Label currentLabel = new Label("Mevcut Rezervasyon:");
         currentLabel.setStyle("-fx-font-weight: 700; -fx-font-size: 14px;");
-        
+
         Label currentInfo = new Label(
-                "Yer: " + reservation.getFacility().getName() + " - " + reservation.getFacilityBlock().getName() + "\n" +
-                "Tarih: " + reservation.getReservationDate().format(dateFormatter) + "\n" +
-                "Saat: " + reservation.getStartTime().format(timeFormatter) + " - " + reservation.getEndTime().format(timeFormatter)
-        );
+                "Yer: " + reservation.getFacility().getName() + " - " + reservation.getFacilityBlock().getName() + "\n"
+                        +
+                        "Tarih: " + reservation.getReservationDate().format(dateFormatter) + "\n" +
+                        "Saat: " + reservation.getStartTime().format(timeFormatter) + " - "
+                        + reservation.getEndTime().format(timeFormatter));
         currentInfo.setStyle("-fx-font-size: 13px; -fx-text-fill: #374151;");
 
         // Yeni tarih secimi
@@ -359,7 +372,7 @@ public class UserReservationsController {
 
         // Yeni saat secimi
         HBox timeBox = new HBox(15);
-        
+
         VBox startBox = new VBox(5);
         Label startLabel = new Label("Baslangic:");
         startLabel.setStyle("-fx-font-weight: 600;");
@@ -389,7 +402,7 @@ public class UserReservationsController {
                 updateEndTimeComboForUpdate(endTimeCombo, selectedStart);
             }
         });
-        
+
         // Ilk yukleme - mevcut tarihe gore baslangic saatlerini ayarla
         updateStartTimeComboForDate(startTimeCombo, reservation.getReservationDate());
         startTimeCombo.setValue(reservation.getStartTime().format(timeFormatter));
@@ -399,7 +412,8 @@ public class UserReservationsController {
         timeBox.getChildren().addAll(startBox, endBox);
 
         // Uyari
-        Label noteLabel = new Label("Not: Guncelleme ayni koltuk icin yapilir. Farkli koltuk icin yeni rezervasyon olusturun.\nSure: Minimum 1, maksimum 3 saat.");
+        Label noteLabel = new Label(
+                "Not: Guncelleme ayni koltuk icin yapilir. Farkli koltuk icin yeni rezervasyon olusturun.\nSure: Minimum 1, maksimum 3 saat.");
         noteLabel.setStyle("-fx-text-fill: #3B82F6; -fx-font-size: 12px;");
         noteLabel.setWrapText(true);
         noteLabel.setMaxWidth(380);
@@ -448,7 +462,8 @@ public class UserReservationsController {
                     return;
                 }
 
-                String message = reservationService.updateReservation(reservation.getId(), newDate, newStartTime, newEndTime);
+                String message = reservationService.updateReservation(reservation.getId(), newDate, newStartTime,
+                        newEndTime);
                 showSuccessAlert("Guncelleme Basarili", message);
                 // Listeyi yenile
                 loadActiveReservations();
@@ -459,15 +474,16 @@ public class UserReservationsController {
     }
 
     /**
-     * Guncelleme dialogu icin bitis saati seceneklerini doldurur (1-3 saat araliginda)
+     * Guncelleme dialogu icin bitis saati seceneklerini doldurur (1-3 saat
+     * araliginda)
      */
     private void updateEndTimeComboForUpdate(ComboBox<String> endCombo, String startTimeStr) {
         endCombo.getItems().clear();
-        
+
         try {
             LocalTime startTime = LocalTime.parse(startTimeStr, timeFormatter);
             LocalTime maxEndTime = LocalTime.of(23, 0); // Tesis kapanisi
-            
+
             // 1 saat sonradan 3 saat sonraya kadar (30 dakika aralikla)
             for (int addMinutes = 60; addMinutes <= 180; addMinutes += 30) {
                 LocalTime endTime = startTime.plusMinutes(addMinutes);
@@ -475,7 +491,7 @@ public class UserReservationsController {
                     endCombo.getItems().add(endTime.format(timeFormatter));
                 }
             }
-            
+
             // Varsayilan olarak 2 saat sonrasini sec
             LocalTime defaultEnd = startTime.plusHours(2);
             if (endCombo.getItems().contains(defaultEnd.format(timeFormatter))) {
@@ -494,17 +510,17 @@ public class UserReservationsController {
      */
     private void updateStartTimeComboForDate(ComboBox<String> combo, LocalDate selectedDate) {
         combo.getItems().clear();
-        
+
         LocalTime now = LocalTime.now();
         boolean isToday = selectedDate.equals(LocalDate.now());
-        
+
         for (int hour = 8; hour <= 22; hour++) {
             LocalTime time = LocalTime.of(hour, 0);
             // Bugun ise sadece gelecek saatleri ekle (en az 1 saat sonrasi)
             if (!isToday || time.isAfter(now.plusHours(1))) {
                 combo.getItems().add(String.format("%02d:00", hour));
             }
-            
+
             if (hour < 22) {
                 LocalTime halfTime = LocalTime.of(hour, 30);
                 if (!isToday || halfTime.isAfter(now.plusHours(1))) {
@@ -512,7 +528,7 @@ public class UserReservationsController {
                 }
             }
         }
-        
+
         // Varsayilan olarak ilk secenegi sec
         if (!combo.getItems().isEmpty()) {
             combo.setValue(combo.getItems().get(0));

@@ -16,40 +16,59 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.Month;
-import java.time.format.TextStyle;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 @Component
 public class UserProfileController {
 
-    @FXML private Label avatarLabel;
-    @FXML private Label userNameLabel;
-    @FXML private Label userEmailLabel;
-    @FXML private Label userRoleLabel;
+    @FXML
+    private Label avatarLabel;
+    @FXML
+    private Label userNameLabel;
+    @FXML
+    private Label userEmailLabel;
+    @FXML
+    private Label userRoleLabel;
 
-    @FXML private Label lblTotalTime;
-    @FXML private Label lblTrendArrow;
-    @FXML private Label lblTrendText;
-    @FXML private Label lblProductiveTime;
-    @FXML private Label lblProductiveMsg;
+    @FXML
+    private Label lblTotalTime;
+    @FXML
+    private Label lblTrendArrow;
+    @FXML
+    private Label lblTrendText;
+    @FXML
+    private Label lblProductiveTime;
+    @FXML
+    private Label lblProductiveMsg;
 
-    @FXML private Label lblAvgSession;
-    @FXML private Label lblLongestSession;
-    @FXML private Label lblShortestSession;
+    @FXML
+    private Label lblAvgSession;
+    @FXML
+    private Label lblLongestSession;
+    @FXML
+    private Label lblShortestSession;
 
-    @FXML private BarChart<String, Number> trendChart;
-    @FXML private Label lblTrendNoData; // YENİ
+    @FXML
+    private BarChart<String, Number> trendChart;
+    @FXML
+    private Label lblTrendNoData; // YENİ
 
-    @FXML private BarChart<String, Number> longTermChart;
-    @FXML private Label lblLongTermNoData; // YENİ
-    @FXML private ComboBox<String> periodSelector;
-    @FXML private ComboBox<String> monthSelector;
+    @FXML
+    private BarChart<String, Number> longTermChart;
+    @FXML
+    private Label lblLongTermNoData; // YENİ
+    @FXML
+    private ComboBox<String> periodSelector;
+    @FXML
+    private ComboBox<String> monthSelector;
 
-    @Autowired private UserProfileService userProfileService;
-    @Autowired private UserSessionContext userSessionContext;
-    @Autowired private UserHomeController userHomeController;
+    @Autowired
+    private UserProfileService userProfileService;
+    @Autowired
+    private UserSessionContext userSessionContext;
+    @Autowired
+    private UserHomeController userHomeController;
 
     private List<Reservation> historyData;
 
@@ -75,7 +94,8 @@ public class UserProfileController {
 
     private void loadStatistics() {
         UserProfileStats stats = userProfileService.calculateUserStats();
-        if (stats == null) return;
+        if (stats == null)
+            return;
 
         lblTotalTime.setText(stats.getTotalTimeThisWeek());
         lblTrendText.setText(stats.getWeeklyComparison());
@@ -99,18 +119,18 @@ public class UserProfileController {
     }
 
     private void setupLongTermChart() {
-        periodSelector.getItems().addAll("Last 3 Months", "Last 12 Months", "Specific Month...");
-        periodSelector.setValue("Last 3 Months");
+        periodSelector.getItems().addAll("Son 3 Ay", "Son 12 Ay", "Belirli Bir Ay...");
+        periodSelector.setValue("Son 3 Ay");
 
         for (Month m : Month.values()) {
-            monthSelector.getItems().add(m.getDisplayName(TextStyle.FULL, Locale.ENGLISH));
+            monthSelector.getItems().add(getTurkishMonthName(m));
         }
-        monthSelector.setValue(LocalDate.now().getMonth().getDisplayName(TextStyle.FULL, Locale.ENGLISH));
+        monthSelector.setValue(getTurkishMonthName(LocalDate.now().getMonth()));
         monthSelector.setVisible(false);
         monthSelector.setManaged(false);
 
         periodSelector.valueProperty().addListener((obs, oldVal, newVal) -> {
-            if ("Specific Month...".equals(newVal)) {
+            if ("Belirli Bir Ay...".equals(newVal)) {
                 monthSelector.setVisible(true);
                 monthSelector.setManaged(true);
                 updateSpecificMonthChart();
@@ -122,26 +142,67 @@ public class UserProfileController {
         });
 
         monthSelector.valueProperty().addListener((obs, oldVal, newVal) -> {
-            if (periodSelector.getValue().equals("Specific Month...")) {
+            if (periodSelector.getValue().equals("Belirli Bir Ay...")) {
                 updateSpecificMonthChart();
             }
         });
 
-        updatePeriodChart("Last 3 Months");
+        updatePeriodChart("Son 3 Ay");
     }
 
     private void updatePeriodChart(String period) {
-        int months = period.equals("Last 12 Months") ? 12 : 3;
+        int months = period.equals("Son 12 Ay") ? 12 : 3;
         Map<String, Double> data = userProfileService.calculateMonthlyTrend(historyData, months);
         populateChart(longTermChart, data, lblLongTermNoData);
     }
 
     private void updateSpecificMonthChart() {
         String selectedMonthName = monthSelector.getValue();
-        if (selectedMonthName == null) return;
-        Month month = Month.valueOf(selectedMonthName.toUpperCase());
+        if (selectedMonthName == null)
+            return;
+        // Türkçe ay ismini tekrar Enum'a çevirmek için ters işlem gerekebilir veya
+        // index kullanılabilir.
+        // Basitlik için UI'dan gelen stringi parse etmek yerine index kullanalim ya da
+        // switch.
+        // Ancak burada combobox string tutuyor.
+        Month month = getMonthFromTurkishName(selectedMonthName);
+        if (month == null)
+            return;
         Map<String, Double> data = userProfileService.calculateSpecificMonthTrend(historyData, month);
         populateChart(longTermChart, data, lblLongTermNoData);
+    }
+
+    private Month getMonthFromTurkishName(String name) {
+        if (name == null)
+            return null;
+        switch (name) {
+            case "Ocak":
+                return Month.JANUARY;
+            case "Subat":
+                return Month.FEBRUARY;
+            case "Mart":
+                return Month.MARCH;
+            case "Nisan":
+                return Month.APRIL;
+            case "Mayis":
+                return Month.MAY;
+            case "Haziran":
+                return Month.JUNE;
+            case "Temmuz":
+                return Month.JULY;
+            case "Agustos":
+                return Month.AUGUST;
+            case "Eylul":
+                return Month.SEPTEMBER;
+            case "Ekim":
+                return Month.OCTOBER;
+            case "Kasim":
+                return Month.NOVEMBER;
+            case "Aralik":
+                return Month.DECEMBER;
+            default:
+                return null;
+        }
     }
 
     // GÜNCELLENMİŞ POPULATE METODU (NO DATA LOGIC)
@@ -180,14 +241,47 @@ public class UserProfileController {
 
     private void displayLabelForData(XYChart.Data<String, Number> data) {
         final StackPane bar = (StackPane) data.getNode();
-        if (data.getYValue().doubleValue() <= 0) return;
+        if (data.getYValue().doubleValue() <= 0)
+            return;
         Label dataLabel = new Label(data.getYValue() + "h");
-        dataLabel.setStyle("-fx-font-size: 10px; -fx-font-weight: bold; -fx-text-fill: white; -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 1);");
+        dataLabel.setStyle(
+                "-fx-font-size: 10px; -fx-font-weight: bold; -fx-text-fill: white; -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.3), 2, 0, 0, 1);");
         bar.getChildren().add(dataLabel);
     }
 
     @FXML
     public void handleBack() {
         userHomeController.showDashboard();
+    }
+
+    private String getTurkishMonthName(Month month) {
+        switch (month) {
+            case JANUARY:
+                return "Ocak";
+            case FEBRUARY:
+                return "Subat";
+            case MARCH:
+                return "Mart";
+            case APRIL:
+                return "Nisan";
+            case MAY:
+                return "Mayis";
+            case JUNE:
+                return "Haziran";
+            case JULY:
+                return "Temmuz";
+            case AUGUST:
+                return "Agustos";
+            case SEPTEMBER:
+                return "Eylul";
+            case OCTOBER:
+                return "Ekim";
+            case NOVEMBER:
+                return "Kasim";
+            case DECEMBER:
+                return "Aralik";
+            default:
+                return month.name();
+        }
     }
 }

@@ -15,26 +15,26 @@
     <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="400.0" spacing="20.0" styleClass="form-card">
 
         <VBox alignment="CENTER" spacing="5.0">
-            <Label styleClass="header-label" text="Welcome Back" />
-            <Label styleClass="sub-header-label" text="Please sign in to continue" />
+            <Label styleClass="header-label" text="Hos Geldiniz" />
+            <Label styleClass="sub-header-label" text="Devam etmek icin giris yapin" />
         </VBox>
 
         <VBox spacing="10.0">
-            <Label text="Email Address" />
+            <Label text="E-posta Adresi" />
             <TextField fx:id="emailField" promptText="john@example.com" />
 
-            <Label text="Password" />
+            <Label text="Sifre" />
             <PasswordField fx:id="passwordField" promptText="••••••••" />
 
             <HBox alignment="CENTER_RIGHT">
-                <Button onAction="#handleGoToRegister" styleClass="link-button" text="Don't have an account? Create one" />
+                <Button onAction="#handleGoToRegister" styleClass="link-button" text="Hesabiniz yok mu? Kayit olun" />
             </HBox>
         </VBox>
 
         <!-- Hata Mesajı (Başlangıçta gizli ve yer kaplamaz) -->
         <Label fx:id="errorLabel" textFill="red" visible="false" managed="false" wrapText="true"/>
 
-        <Button maxWidth="1.7976931348623157E308" onAction="#handleLogin" styleClass="primary-button" text="Sign In" />
+        <Button maxWidth="1.7976931348623157E308" onAction="#handleLogin" styleClass="primary-button" text="Giris Yap" />
 
     </VBox>
 

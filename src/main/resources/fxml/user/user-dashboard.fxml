@@ -11,31 +11,31 @@
 <VBox alignment="CENTER" spacing="30" style="-fx-background-color: #f4f6f8;" stylesheets="@../../css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.studyflow.app.gui.user.UserDashboardController">
 
     <!-- Karşılama Mesajı -->
-    <Label text="What would you like to do today?" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #333;" />
+    <Label text="Bugun ne yapmak istersiniz?" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #333;" />
 
     <!-- Grid Menü -->
     <GridPane hgap="40" vgap="40" alignment="CENTER" styleClass="dashboard-grid">
 
         <!-- 1. Kütüphaneler (Aktif) -->
-        <Button fx:id="btnExplore" text="Explore Libraries" onAction="#handleExploreFacilities"
+        <Button fx:id="btnExplore" text="Kutuphaneleri Kesfet" onAction="#handleExploreFacilities"
                 styleClass="dashboard-card-btn" prefWidth="280" prefHeight="220" GridPane.columnIndex="0" GridPane.rowIndex="0" />
 
         <!-- 2. Rezervasyonlarım -->
-        <Button fx:id="btnReservations" text="My Reservations" onAction="#handleMyReservations"
+        <Button fx:id="btnReservations" text="Rezervasyonlarim" onAction="#handleMyReservations"
                 styleClass="dashboard-card-btn" prefWidth="280" prefHeight="220" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
         <!-- 3. Profilim -->
-        <Button fx:id="btnProfile" text="My Profile" onAction="#handleProfile"
+        <Button fx:id="btnProfile" text="Profilim" onAction="#handleProfile"
                 styleClass="dashboard-card-btn" prefWidth="280" prefHeight="220" GridPane.columnIndex="2" GridPane.rowIndex="0" />
 
         <!-- Alt Satır (Placeholderlar) -->
-        <Button text="Events" disable="true"
+        <Button text="Etkinlikler" disable="true"
                 styleClass="dashboard-card-btn" prefWidth="280" prefHeight="220" GridPane.columnIndex="0" GridPane.rowIndex="1" />
 
-        <Button text="Help &amp; Support" disable="true"
+        <Button text="Yardim &amp; Destek" disable="true"
                 styleClass="dashboard-card-btn" prefWidth="280" prefHeight="220" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-        <Button text="Log Out" onAction="#handleLogout"
+        <Button text="Cikis Yap" onAction="#handleLogout"
                 styleClass="dashboard-card-btn" style="-fx-text-fill: #e74c3c;" prefWidth="280" prefHeight="220" GridPane.columnIndex="2" GridPane.rowIndex="1" />
 
     </GridPane>

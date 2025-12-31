@@ -27,12 +27,12 @@
         <!-- HEADER -->
         <HBox alignment="CENTER_LEFT" spacing="20">
             <VBox spacing="5">
-                <Label text="Librarian Dashboard" style="-fx-font-size: 32px; -fx-font-weight: 800; -fx-text-fill: #1a1a2e;"/>
-                <Label fx:id="facilityNameLabel" text="Facility: Loading..." style="-fx-font-size: 16px; -fx-text-fill: #6b7280;"/>
+                <Label text="Kutuphaneci Paneli" style="-fx-font-size: 32px; -fx-font-weight: 800; -fx-text-fill: #1a1a2e;"/>
+                <Label fx:id="facilityNameLabel" text="Tesis: Yukleniyor..." style="-fx-font-size: 16px; -fx-text-fill: #6b7280;"/>
             </VBox>
             <Region HBox.hgrow="ALWAYS"/>
             <VBox alignment="CENTER_RIGHT" spacing="3">
-                <Label text="Today's Date" style="-fx-font-size: 12px; -fx-text-fill: #9ca3af;"/>
+                <Label text="Bugunun Tarihi" style="-fx-font-size: 12px; -fx-text-fill: #9ca3af;"/>
                 <Label fx:id="currentDateLabel" text="--" style="-fx-font-size: 18px; -fx-font-weight: 600; -fx-text-fill: #374151;"/>
             </VBox>
         </HBox>
@@ -40,16 +40,16 @@
         <!-- REAL-TIME OCCUPANCY BAR -->
         <VBox styleClass="stat-card" spacing="15">
             <HBox alignment="CENTER_LEFT" spacing="20">
-                <Label text="Real-Time Occupancy" style="-fx-font-size: 18px; -fx-font-weight: 700; -fx-text-fill: #333;"/>
+                <Label text="Anlik Doluluk" style="-fx-font-size: 18px; -fx-font-weight: 700; -fx-text-fill: #333;"/>
                 <Region HBox.hgrow="ALWAYS"/>
                 <Label fx:id="occupancyPercentLabel" text="0%" style="-fx-font-size: 24px; -fx-font-weight: 800; -fx-text-fill: #4a90e2;"/>
             </HBox>
             <ProgressBar fx:id="occupancyProgressBar" progress="0" prefHeight="25" maxWidth="Infinity" 
                          style="-fx-accent: #4a90e2;"/>
             <HBox spacing="30">
-                <Label fx:id="occupiedSeatsLabel" text="Occupied: 0" style="-fx-font-size: 14px; -fx-text-fill: #27ae60;"/>
-                <Label fx:id="availableSeatsLabel" text="Available: 0" style="-fx-font-size: 14px; -fx-text-fill: #95a5a6;"/>
-                <Label fx:id="totalSeatsInfoLabel" text="Total: 0 seats" style="-fx-font-size: 14px; -fx-text-fill: #666;"/>
+                <Label fx:id="occupiedSeatsLabel" text="Dolu: 0" style="-fx-font-size: 14px; -fx-text-fill: #27ae60;"/>
+                <Label fx:id="availableSeatsLabel" text="Musait: 0" style="-fx-font-size: 14px; -fx-text-fill: #95a5a6;"/>
+                <Label fx:id="totalSeatsInfoLabel" text="Toplam: 0 koltuk" style="-fx-font-size: 14px; -fx-text-fill: #666;"/>
             </HBox>
         </VBox>
         
@@ -59,7 +59,7 @@
                 <HBox alignment="CENTER_LEFT" spacing="12">
                     <Label text="BLK" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #4a90e2;"/>
                     <VBox>
-                        <Label text="Blocks" style="-fx-font-size: 13px; -fx-text-fill: #6b7280;"/>
+                        <Label text="Bloklar" style="-fx-font-size: 13px; -fx-text-fill: #6b7280;"/>
                         <Label fx:id="totalBlocksLabel" text="0" style="-fx-font-size: 26px; -fx-font-weight: 800; -fx-text-fill: #4a90e2;"/>
                     </VBox>
                 </HBox>
@@ -69,7 +69,7 @@
                 <HBox alignment="CENTER_LEFT" spacing="12">
                     <Label text="DSK" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #27ae60;"/>
                     <VBox>
-                        <Label text="Desks" style="-fx-font-size: 13px; -fx-text-fill: #6b7280;"/>
+                        <Label text="Masalar" style="-fx-font-size: 13px; -fx-text-fill: #6b7280;"/>
                         <Label fx:id="totalDesksLabel" text="0" style="-fx-font-size: 26px; -fx-font-weight: 800; -fx-text-fill: #27ae60;"/>
                     </VBox>
                 </HBox>
@@ -79,7 +79,7 @@
                 <HBox alignment="CENTER_LEFT" spacing="12">
                     <Label text="RES" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #e67e22;"/>
                     <VBox>
-                        <Label text="Today's Reservations" style="-fx-font-size: 13px; -fx-text-fill: #6b7280;"/>
+                        <Label text="Bugunku Rezervasyonlar" style="-fx-font-size: 13px; -fx-text-fill: #6b7280;"/>
                         <Label fx:id="todayReservationsLabel" text="0" style="-fx-font-size: 26px; -fx-font-weight: 800; -fx-text-fill: #e67e22;"/>
                     </VBox>
                 </HBox>
@@ -89,7 +89,7 @@
                 <HBox alignment="CENTER_LEFT" spacing="12">
                     <Label text="WK" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #9b59b6;"/>
                     <VBox>
-                        <Label text="This Week" style="-fx-font-size: 13px; -fx-text-fill: #6b7280;"/>
+                        <Label text="Bu Hafta" style="-fx-font-size: 13px; -fx-text-fill: #6b7280;"/>
                         <Label fx:id="weekReservationsLabel" text="0" style="-fx-font-size: 26px; -fx-font-weight: 800; -fx-text-fill: #9b59b6;"/>
                     </VBox>
                 </HBox>
@@ -103,13 +103,13 @@
             
             <!-- SOL: HAFTALIK REZERVASYON GRAFIGI -->
             <VBox styleClass="stat-card" spacing="15" prefWidth="550" prefHeight="350" HBox.hgrow="ALWAYS">
-                <Label text="Weekly Reservation Trend" style="-fx-font-size: 18px; -fx-font-weight: 700; -fx-text-fill: #333;"/>
+                <Label text="Haftalik Rezervasyon Trendi" style="-fx-font-size: 18px; -fx-font-weight: 700; -fx-text-fill: #333;"/>
                 <BarChart fx:id="weeklyBarChart" prefHeight="280">
                     <xAxis>
-                        <CategoryAxis label="Day"/>
+                        <CategoryAxis label="Gun"/>
                     </xAxis>
                     <yAxis>
-                        <NumberAxis label="Reservations"/>
+                        <NumberAxis label="Rezervasyonlar"/>
                     </yAxis>
                 </BarChart>
             </VBox>

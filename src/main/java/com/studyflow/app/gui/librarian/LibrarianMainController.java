@@ -48,7 +48,7 @@ public class LibrarianMainController {
     }
 
     private void updateWelcomeMessage(User user) {
-        welcomeLabel.setText((user != null) ? "Welcome, Librarian " + user.getFirstName() : "Welcome");
+        welcomeLabel.setText((user != null) ? "Hosgeldiniz, Kutuphaneci " + user.getFirstName() : "Hosgeldiniz");
     }
 
     @FXML
@@ -67,13 +67,11 @@ public class LibrarianMainController {
         ContextMenu menu = new ContextMenu();
         menu.getStyleClass().add("pop-menu");
 
-        MenuItem itemUpdateSchedule = new MenuItem("Update Working Hours");
-        MenuItem itemViewInfo = new MenuItem("View Facility Details");
-        MenuItem itemEditMap = new MenuItem("Edit Facility Map (Blocks)");
-        MenuItem itemEditDesks = new MenuItem("Edit Desk Layout");
-
-        // YENİ EKLENEN SEÇENEK
-        MenuItem itemEditSeats = new MenuItem("Edit Seat Layout");
+        MenuItem itemUpdateSchedule = new MenuItem("Calisma Saatlerini Guncelle");
+        MenuItem itemViewInfo = new MenuItem("Tesis Detaylarini Goruntule");
+        MenuItem itemEditMap = new MenuItem("Tesis Haritasini Duzenle (Bloklar)");
+        MenuItem itemEditDesks = new MenuItem("Masa Duzenini Duzenle");
+        MenuItem itemEditSeats = new MenuItem("Koltuk Duzenini Duzenle");
 
         // Navigasyonlar
         itemUpdateSchedule.setOnAction(e -> loadView("/fxml/librarian/librarian-schedule.fxml"));

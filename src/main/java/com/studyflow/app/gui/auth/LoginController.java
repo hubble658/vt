@@ -17,12 +17,17 @@ import org.springframework.stereotype.Component;
 @Component
 public class LoginController {
 
-    @FXML private TextField emailField;
-    @FXML private PasswordField passwordField;
-    @FXML private Label errorLabel;
+    @FXML
+    private TextField emailField;
+    @FXML
+    private PasswordField passwordField;
+    @FXML
+    private Label errorLabel;
 
-    @FXML private TranslateTransition shakeEmailAnim;
-    @FXML private TranslateTransition shakePassAnim;
+    @FXML
+    private TranslateTransition shakeEmailAnim;
+    @FXML
+    private TranslateTransition shakePassAnim;
 
     @Autowired
     private NavigationService navigationService;
@@ -59,22 +64,22 @@ public class LoginController {
         }
 
         if (hasError) {
-            showError("Please enter your email and password.");
+            showError("Lutfen e-posta ve sifrenizi girin.");
             return;
         }
 
         try {
             UserRole userole = authService.login(email, password);
-            if (userole.equals(UserRole.USER)){
+            if (userole.equals(UserRole.USER)) {
                 navigationService.navigateTo(viewFactory.loadView("/fxml/user/user-home.fxml"));
-            } else if (userole.equals(UserRole.ADMIN)){
+            } else if (userole.equals(UserRole.ADMIN)) {
                 navigationService.navigateTo(viewFactory.loadView("/fxml/admin/admin-main-layout.fxml"));
             } else {
                 navigationService.navigateTo(viewFactory.loadView("/fxml/librarian/librarian-main-layout.fxml"));
             }
             System.out.println("Login Success: " + email);
-        } catch (ArgumentNotValidException e){
-            showError("Email address or password is incorrect!");
+        } catch (ArgumentNotValidException e) {
+            showError("E-posta adresi veya sifre hatali!");
         }
     }
 

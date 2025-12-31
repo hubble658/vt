@@ -15,23 +15,36 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class RegisterController {
-    @FXML private TextField firstNameField;
-    @FXML private TextField lastNameField;
-    @FXML private TextField emailField;
-    @FXML private PasswordField passwordField;
-    @FXML private PasswordField confirmPasswordField;
-    @FXML private Label errorLabel;
+    @FXML
+    private TextField firstNameField;
+    @FXML
+    private TextField lastNameField;
+    @FXML
+    private TextField emailField;
+    @FXML
+    private PasswordField passwordField;
+    @FXML
+    private PasswordField confirmPasswordField;
+    @FXML
+    private Label errorLabel;
 
     // Registerde hatali girdi animasyonlari
-    @FXML private TranslateTransition shakePassAnim;
-    @FXML private TranslateTransition shakeConfirmAnim;
-    @FXML private TranslateTransition shakeFirstNameAnim;
-    @FXML private TranslateTransition shakeLastNameAnim;
-    @FXML private TranslateTransition shakeEmailAnim;
+    @FXML
+    private TranslateTransition shakePassAnim;
+    @FXML
+    private TranslateTransition shakeConfirmAnim;
+    @FXML
+    private TranslateTransition shakeFirstNameAnim;
+    @FXML
+    private TranslateTransition shakeLastNameAnim;
+    @FXML
+    private TranslateTransition shakeEmailAnim;
 
-    @Autowired private NavigationService navigationService;
+    @Autowired
+    private NavigationService navigationService;
 
-    @Autowired private AuthService authService;
+    @Autowired
+    private AuthService authService;
 
     @FXML
     public void initialize() {
@@ -78,13 +91,13 @@ public class RegisterController {
         }
 
         if (hasError) {
-            showError("Please fill in all required fields.");
+            showError("Lutfen tum zorunlu alanlari doldurun.");
             return;
         }
 
         // 2 - Check password equality
         if (!password.equals(confirmPass)) {
-            showError("Passwords do not match!");
+            showError("Sifreler eslesmiyor!");
 
             addErrorStyle(passwordField);
             addErrorStyle(confirmPasswordField);
@@ -99,26 +112,26 @@ public class RegisterController {
             authService.register(email, password, firstName, lastName);
             System.out.println("Register success: " + email);
             navigationService.goBack();
-        } catch (ArgumentNotValidException e){
-            if (e.getMessage().equals("password")){
-                showError("Please enter a valid password! Length must be between 6-20");
+        } catch (ArgumentNotValidException e) {
+            if (e.getMessage().equals("password")) {
+                showError("Lutfen gecerli bir sifre girin! Uzunluk 6-20 arasinda olmalidir.");
                 addErrorStyle(passwordField);
                 addErrorStyle(confirmPasswordField);
                 shakePassAnim.playFromStart();
                 shakeConfirmAnim.playFromStart();
-            } else if (e.getMessage().contains("email")){
-                showError("Please enter a valid email address!");
+            } else if (e.getMessage().contains("email")) {
+                showError("Lutfen gecerli bir e-posta adresi girin!");
                 addErrorStyle(emailField);
                 shakeEmailAnim.playFromStart();
             } else {
-                showError("First name and last name must be in proper length! Contact support if your name is correct.");
+                showError("Ad ve soyad uygun uzunlukta olmalidir! Eger isminiz dogruysa destek ile iletisime gecin.");
                 addErrorStyle(firstNameField);
                 shakeFirstNameAnim.playFromStart();
                 addErrorStyle(lastNameField);
                 shakeLastNameAnim.playFromStart();
             }
-        } catch (ResourceAlreadyExistException e){
-            showError("The email you entered is in use. Please login or use a different email address.");
+        } catch (ResourceAlreadyExistException e) {
+            showError("Girdiginiz e-posta kullanimda. Lutfen giris yapin veya farkli bir e-posta adresi kullanin.");
             addErrorStyle(emailField);
             shakeEmailAnim.playFromStart();
         }

@@ -12,13 +12,19 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserFacilityDashboardController {
 
-    @FXML private Label facilityNameLabel;
-    @FXML private Button btnReserve;
-    @FXML private Button btnHours;
-    @FXML private Button btnInfo;
+    @FXML
+    private Label facilityNameLabel;
+    @FXML
+    private Button btnReserve;
+    @FXML
+    private Button btnHours;
+    @FXML
+    private Button btnInfo;
 
-    @Autowired private UserHomeController userHomeController; // Layout Yöneticisi
-    @Autowired private GlobalParamsContext globalParams; // Veri
+    @Autowired
+    private UserHomeController userHomeController; // Layout Yöneticisi
+    @Autowired
+    private GlobalParamsContext globalParams; // Veri
 
     @FXML
     public void initialize() {
@@ -28,7 +34,7 @@ public class UserFacilityDashboardController {
 
         // GÜNCELLEME: Rezervasyon butonu artık aktif
         btnReserve.setDisable(false);
-        btnReserve.setText("Make Reservation");
+        btnReserve.setText("Rezervasyon Yap");
 
         Facility facility = globalParams.getSelectedFacility();
         if (facility != null) {

@@ -12,7 +12,7 @@
 
     <!-- Kiosk Header -->
     <HBox alignment="CENTER_LEFT" spacing="20.0" style="-fx-background-color: white; -fx-padding: 20 40; -fx-border-color: #e0e0e0; -fx-border-width: 0 0 1 0;">
-        <Button text="← Back to List" onAction="#handleBack" styleClass="big-back-button" />
+        <Button text="← Listeye Don" onAction="#handleBack" styleClass="big-back-button" />
 
         <Region HBox.hgrow="ALWAYS" />
 
@@ -24,15 +24,15 @@
         <GridPane hgap="40" vgap="40" alignment="CENTER" styleClass="dashboard-grid">
 
             <!-- 1. REZERVE (DISABLED) -->
-            <Button fx:id="btnReserve" text="Make Reservation" onAction="#handleReserve"
+            <Button fx:id="btnReserve" text="Rezervasyon Yap" onAction="#handleReserve"
                     styleClass="dashboard-card-btn" prefWidth="280" prefHeight="220" GridPane.columnIndex="0" GridPane.rowIndex="0" disable="true" />
 
             <!-- 2. SAATLER -->
-            <Button fx:id="btnHours" text="Weekly Hours" onAction="#handleWeeklyHours"
+            <Button fx:id="btnHours" text="Haftalik Saatler" onAction="#handleWeeklyHours"
                     styleClass="dashboard-card-btn" prefWidth="280" prefHeight="220" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
             <!-- 3. BİLGİ -->
-            <Button fx:id="btnInfo" text="Facility Info" onAction="#handleInfo"
+            <Button fx:id="btnInfo" text="Tesis Bilgisi" onAction="#handleInfo"
                     styleClass="dashboard-card-btn" prefWidth="280" prefHeight="220" GridPane.columnIndex="2" GridPane.rowIndex="0" />
 
         </GridPane>

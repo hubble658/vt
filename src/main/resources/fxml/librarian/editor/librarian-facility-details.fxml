@@ -39,18 +39,18 @@
 
                     <!-- 2. BAŞLIK VE ADRES -->
                     <VBox spacing="5.0">
-                        <Label fx:id="nameLabel" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #333;" text="Loading Facility Name..." wrapText="true" />
+                        <Label fx:id="nameLabel" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #333;" text="Tesis Adi Yukleniyor..." wrapText="true" />
 
                         <HBox alignment="CENTER_LEFT" spacing="10.0">
                             <Label styleClass="timer-icon" text="📍" />
-                            <Label fx:id="addressLabel" style="-fx-font-size: 14px; -fx-text-fill: #666;" text="Loading Address..." wrapText="true" />
+                            <Label fx:id="addressLabel" style="-fx-font-size: 14px; -fx-text-fill: #666;" text="Adres Yukleniyor..." wrapText="true" />
                         </HBox>
                     </VBox>
 
                     <Separator />
 
                     <!-- 3. ÇALIŞMA SAATLERİ -->
-                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #4a90e2;" text="Weekly Schedule" />
+                    <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #4a90e2;" text="Haftalik Program" />
 
                     <VBox fx:id="scheduleContainer" spacing="10.0" />
 

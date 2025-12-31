@@ -100,7 +100,7 @@ public class LibrarianScheduleController {
         try {
             DayOfWeek selectedDay = dayComboBox.getValue();
             if (selectedDay == null) {
-                showError("Please select a day.");
+                showError("Lutfen bir gun secin.");
                 return;
             }
 
@@ -113,16 +113,16 @@ public class LibrarianScheduleController {
                 closeTime = closeTimeBox.getValue();
 
                 if (openTime == null || closeTime == null) {
-                    showError("Please select both open and close times.");
+                    showError("Lutfen hem acilis hem de kapanis saatlerini secin.");
                     return;
                 }
             }
 
             facilityService.addDailySchedule(selectedDay, openTime, closeTime, isClosed);
-            showSuccess("Schedule updated for " + selectedDay);
+            showSuccess("Program guncellendi: " + selectedDay);
 
         } catch (Exception e) {
-            showError("Error: " + e.getMessage());
+            showError("Hata: " + e.getMessage());
             e.printStackTrace();
         }
     }

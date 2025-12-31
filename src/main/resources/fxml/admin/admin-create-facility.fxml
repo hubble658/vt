@@ -20,10 +20,10 @@
 
         <!-- HEADER -->
         <HBox alignment="CENTER_LEFT" spacing="20">
-            <Button text="← Back" onAction="#handleBack" styleClass="secondary-button"/>
+            <Button text="← Geri" onAction="#handleBack" styleClass="secondary-button"/>
             <VBox spacing="5">
-                <Label text="Create New Facility" style="-fx-font-size: 28px; -fx-font-weight: 800; -fx-text-fill: #1e293b;"/>
-                <Label text="Add a new library facility to the system" style="-fx-font-size: 14px; -fx-text-fill: #64748b;"/>
+                <Label text="Yeni Tesis Olustur" style="-fx-font-size: 28px; -fx-font-weight: 800; -fx-text-fill: #1e293b;"/>
+                <Label text="Sisteme yeni bir kutuphane tesisi ekle" style="-fx-font-size: 14px; -fx-text-fill: #64748b;"/>
             </VBox>
         </HBox>
 
@@ -32,22 +32,22 @@
         <!-- FORM -->
         <VBox spacing="20" maxWidth="600" style="-fx-background-color: white; -fx-background-radius: 16; -fx-padding: 30;">
             
-            <Label text="Facility Information" style="-fx-font-size: 18px; -fx-font-weight: 700; -fx-text-fill: #1e293b;"/>
+            <Label text="Tesis Bilgileri" style="-fx-font-size: 18px; -fx-font-weight: 700; -fx-text-fill: #1e293b;"/>
             
             <VBox spacing="8">
-                <Label text="Facility Name *" style="-fx-font-size: 13px; -fx-font-weight: 600; -fx-text-fill: #475569;"/>
-                <TextField fx:id="nameField" promptText="e.g., Central Library" styleClass="text-field"/>
+                <Label text="Tesis Adi *" style="-fx-font-size: 13px; -fx-font-weight: 600; -fx-text-fill: #475569;"/>
+                <TextField fx:id="nameField" promptText="or. Merkez Kutuphane" styleClass="text-field"/>
             </VBox>
             
             <VBox spacing="8">
-                <Label text="Address *" style="-fx-font-size: 13px; -fx-font-weight: 600; -fx-text-fill: #475569;"/>
-                <TextField fx:id="addressField" promptText="e.g., Main Street No: 123, City" styleClass="text-field"/>
+                <Label text="Adres *" style="-fx-font-size: 13px; -fx-font-weight: 600; -fx-text-fill: #475569;"/>
+                <TextField fx:id="addressField" promptText="or. Ana Cadde No: 123, Sehir" styleClass="text-field"/>
             </VBox>
             
             <VBox spacing="8">
-                <Label text="Image URL" style="-fx-font-size: 13px; -fx-font-weight: 600; -fx-text-fill: #475569;"/>
+                <Label text="Resim URL" style="-fx-font-size: 13px; -fx-font-weight: 600; -fx-text-fill: #475569;"/>
                 <TextField fx:id="imageField" promptText="https://example.com/image.jpg" styleClass="text-field"/>
-                <Label text="Provide a URL to an image representing the facility" style="-fx-font-size: 11px; -fx-text-fill: #94a3b8;"/>
+                <Label text="Tesisi temsil eden bir resim URL'si girin" style="-fx-font-size: 11px; -fx-text-fill: #94a3b8;"/>
             </VBox>
             
             <!-- Status Message -->
@@ -57,8 +57,8 @@
             
             <!-- Actions -->
             <HBox spacing="15" alignment="CENTER_RIGHT">
-                <Button text="Cancel" onAction="#handleBack" styleClass="secondary-button"/>
-                <Button text="Create Facility" onAction="#handleCreate" styleClass="primary-button"/>
+                <Button text="Iptal" onAction="#handleBack" styleClass="secondary-button"/>
+                <Button text="Tesis Olustur" onAction="#handleCreate" styleClass="primary-button"/>
             </HBox>
             
         </VBox>

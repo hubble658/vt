@@ -24,10 +24,14 @@ import java.util.Objects;
 @Component
 public class LibrarianFacilityDetailsController {
 
-    @FXML private ImageView facilityImage;
-    @FXML private Label nameLabel;
-    @FXML private Label addressLabel;
-    @FXML private VBox scheduleContainer;
+    @FXML
+    private ImageView facilityImage;
+    @FXML
+    private Label nameLabel;
+    @FXML
+    private Label addressLabel;
+    @FXML
+    private VBox scheduleContainer;
 
     @Autowired
     private FacilityRepository facilityRepository;
@@ -51,7 +55,6 @@ public class LibrarianFacilityDetailsController {
         }
 
         Facility facility = currentUser.getFacilityInfo().getFacility();
-
 
         if (facility != null) {
             populateUI(facility);

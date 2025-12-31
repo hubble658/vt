@@ -34,39 +34,63 @@ import java.util.List;
 public class UserReservationStep4Controller {
 
     private static final double CANVAS_SIZE = 600.0;
-    private static final double SEAT_SIZE   = 32.0;
+    private static final double SEAT_SIZE = 32.0;
 
-    @FXML private Pane seatCanvas;
-    @FXML private StackPane confirmOverlay;
-    @FXML private BorderPane mainLayout;
+    @FXML
+    private Pane seatCanvas;
+    @FXML
+    private StackPane confirmOverlay;
+    @FXML
+    private BorderPane mainLayout;
 
     // Header sağ üst özet
-    @FXML private Label lblTopSummaryDateTime;
-    @FXML private Label lblTopSummaryBlockDesk;
+    @FXML
+    private Label lblTopSummaryDateTime;
+    @FXML
+    private Label lblTopSummaryBlockDesk;
 
     // Confirm modal alanları
-    @FXML private Label lblModalTitle;
-    @FXML private Label lblConfirmDate;
-    @FXML private Label lblConfirmTime;
-    @FXML private Label lblConfirmFacility;
-    @FXML private Label lblConfirmBlock;
-    @FXML private Label lblConfirmDesk;
-    @FXML private Label lblConfirmSeat;
+    @FXML
+    private Label lblModalTitle;
+    @FXML
+    private Label lblConfirmDate;
+    @FXML
+    private Label lblConfirmTime;
+    @FXML
+    private Label lblConfirmFacility;
+    @FXML
+    private Label lblConfirmBlock;
+    @FXML
+    private Label lblConfirmDesk;
+    @FXML
+    private Label lblConfirmSeat;
 
-    @FXML private Label lblWarningMessage;   // 30 dakika uyarısı
-    @FXML private Label lblErrorMessage;     // Hata mesajı
-    @FXML private Label lblSuccessMessage;   // Başarılı rezervasyon mesajı
+    @FXML
+    private Label lblWarningMessage; // 30 dakika uyarısı
+    @FXML
+    private Label lblErrorMessage; // Hata mesajı
+    @FXML
+    private Label lblSuccessMessage; // Başarılı rezervasyon mesajı
 
-    @FXML private HBox confirmButtonsRow;    // Cancel + Confirm
-    @FXML private HBox errorButtonsRow;      // Tek "OK" butonu
-    @FXML private HBox successButtonsRow;    // Başarı sonrası "Back to Home"
+    @FXML
+    private HBox confirmButtonsRow; // Cancel + Confirm
+    @FXML
+    private HBox errorButtonsRow; // Tek "OK" butonu
+    @FXML
+    private HBox successButtonsRow; // Başarı sonrası "Back to Home"
 
-    @Autowired private GlobalParamsContext globalParams;
-    @Autowired private SeatRepository seatRepository;
-    @Autowired private ReservationService reservationService;
-    @Autowired private NavigationService navigationService;
-    @Autowired private ViewFactory viewFactory;
-    @Autowired private UserHomeController userHomeController;
+    @Autowired
+    private GlobalParamsContext globalParams;
+    @Autowired
+    private SeatRepository seatRepository;
+    @Autowired
+    private ReservationService reservationService;
+    @Autowired
+    private NavigationService navigationService;
+    @Autowired
+    private ViewFactory viewFactory;
+    @Autowired
+    private UserHomeController userHomeController;
 
     private Desk currentDesk;
     private StackPane selectedSeatNode = null;
@@ -111,15 +135,14 @@ public class UserReservationStep4Controller {
         FacilityBlock block = globalParams.getSelectedFacilityBlock();
 
         String facilityName = (facility != null) ? facility.getName() : "-";
-        String blockName    = (block != null) ? block.getName() : "-";
-        String deskText     = (currentDesk.getIdRange() != null)
+        String blockName = (block != null) ? block.getName() : "-";
+        String deskText = (currentDesk.getIdRange() != null)
                 ? currentDesk.getIdRange()
-                : ("Desk " + currentDesk.getId());
+                : ("Masa " + currentDesk.getId());
 
         if (lblTopSummaryBlockDesk != null) {
             lblTopSummaryBlockDesk.setText(
-                    facilityName + "  •  " + blockName + "  •  " + deskText
-            );
+                    facilityName + "  •  " + blockName + "  •  " + deskText);
         }
     }
 
@@ -131,8 +154,7 @@ public class UserReservationStep4Controller {
                     if (!confirmOverlay.isVisible()) {
                         renderScene();
                     }
-                })
-        );
+                }));
         refreshTimeline.setCycleCount(Timeline.INDEFINITE);
         refreshTimeline.play();
     }
@@ -173,12 +195,11 @@ public class UserReservationStep4Controller {
         deskRect.setStroke(Color.DARKGRAY);
         deskRect.setEffect(new DropShadow(10, Color.rgb(0, 0, 0, 0.40)));
 
-        Label deskLabel = new Label(currentDesk.getIdRange() != null ? currentDesk.getIdRange() : "Desk");
+        Label deskLabel = new Label(currentDesk.getIdRange() != null ? currentDesk.getIdRange() : "Masa");
         deskLabel.setStyle(
                 "-fx-font-size: 20px;" +
                         "-fx-text-fill: rgba(0,0,0,0.35);" +
-                        "-fx-font-weight: bold;"
-        );
+                        "-fx-font-weight: bold;");
         deskLabel.setLayoutX(deskOriginX + (deskW / 2) - 28);
         deskLabel.setLayoutY(deskOriginY + (deskH / 2) - 12);
 
@@ -190,8 +211,7 @@ public class UserReservationStep4Controller {
                 currentDesk.getId(),
                 globalParams.getSelectedDate(),
                 globalParams.getSelectedStartTime(),
-                globalParams.getSelectedEndTime()
-        );
+                globalParams.getSelectedEndTime());
 
         for (Seat seat : seats) {
             boolean isOccupied = occupiedIds.contains(seat.getId());
@@ -205,15 +225,15 @@ public class UserReservationStep4Controller {
 
         double deskW = currentDesk.getWidth();
         double deskH = currentDesk.getHeight();
-        
+
         // Sandalyeyi masanin ETRAFINA konumlandir
         // relX ve relY 0-1 arasinda, 0.5 = ortada
         // Sandalyeler masanin kenarlarinin disinda olmali
         double absX, absY;
-        
+
         // Masanin kenarlarindan offset (sandalye buyuklugu kadar)
         double offset = SEAT_SIZE + 8;
-        
+
         // relX ve relY degerlerine gore pozisyon belirle
         // Sol kenar (relX < 0.3)
         if (relX < 0.3) {
@@ -255,8 +275,7 @@ public class UserReservationStep4Controller {
                 "-fx-text-fill: white; " +
                         "-fx-font-weight: bold; " +
                         "-fx-font-size: 12px; " +
-                        "-fx-effect: dropshadow(one-pass-box, black, 2, 0.5, 0, 0);"
-        );
+                        "-fx-effect: dropshadow(one-pass-box, black, 2, 0.5, 0, 0);");
 
         if (isOccupied) {
             // DOLU SEAT
@@ -324,8 +343,7 @@ public class UserReservationStep4Controller {
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         lblConfirmDate.setText(globalParams.getSelectedDate().format(dateFormatter));
         lblConfirmTime.setText(
-                globalParams.getSelectedStartTime() + " – " + globalParams.getSelectedEndTime()
-        );
+                globalParams.getSelectedStartTime() + " – " + globalParams.getSelectedEndTime());
 
         Facility facility = globalParams.getSelectedFacility();
         FacilityBlock block = globalParams.getSelectedFacilityBlock();
@@ -334,11 +352,11 @@ public class UserReservationStep4Controller {
 
         lblConfirmFacility.setText(facility != null ? facility.getName() : "-");
         lblConfirmBlock.setText(block != null ? block.getName() : "-");
-        lblConfirmDesk.setText(desk.getIdRange() != null ? desk.getIdRange() : ("Desk " + desk.getId()));
-        lblConfirmSeat.setText("Seat #" + (seat != null ? seat.getSeatNumber() : "?"));
+        lblConfirmDesk.setText(desk.getIdRange() != null ? desk.getIdRange() : ("Masa " + desk.getId()));
+        lblConfirmSeat.setText("Koltuk #" + (seat != null ? seat.getSeatNumber() : "?"));
 
         // Modal'ı "confirm" moduna al
-        lblModalTitle.setText("Confirm Reservation");
+        lblModalTitle.setText("Rezervasyonu Onayla");
 
         lblWarningMessage.setVisible(true);
         lblWarningMessage.setManaged(true);
@@ -364,7 +382,7 @@ public class UserReservationStep4Controller {
 
     /** Hata durumunda: onay ekranını hata ekranına çevirir */
     private void showErrorOverlay(String errorMessage) {
-        lblModalTitle.setText("Rezervasyon Başarısız");
+        lblModalTitle.setText("Rezervasyon Basarisiz");
 
         // 30 dk uyarısını gizle
         lblWarningMessage.setVisible(false);
@@ -412,7 +430,7 @@ public class UserReservationStep4Controller {
 
     /** Başarılı rezervasyon sonrası info modu */
     private void showSuccessOverlay() {
-        lblModalTitle.setText("Reservation Created");
+        lblModalTitle.setText("Rezervasyon Olusturuldu");
 
         // Confirm / Error / Warning kapat
         lblWarningMessage.setVisible(false);
@@ -422,7 +440,7 @@ public class UserReservationStep4Controller {
         lblErrorMessage.setManaged(false);
 
         // Başarı mesajı
-        lblSuccessMessage.setText("✅ Your reservation has been created successfully.");
+        lblSuccessMessage.setText("✅ Rezervasyonunuz basariyla olusturuldu.");
         lblSuccessMessage.setVisible(true);
         lblSuccessMessage.setManaged(true);
 
@@ -482,8 +500,7 @@ public class UserReservationStep4Controller {
                     globalParams.getSelectedSeat().getId(),
                     globalParams.getSelectedDate(),
                     globalParams.getSelectedStartTime(),
-                    globalParams.getSelectedEndTime()
-            );
+                    globalParams.getSelectedEndTime());
             stopRefreshTimer();
             // Dashboard'a gitmek yerine success info ekranı
             showSuccessOverlay();

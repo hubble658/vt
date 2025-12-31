@@ -21,19 +21,19 @@
         <!-- HEADER -->
         <HBox alignment="CENTER_LEFT" spacing="20">
             <VBox spacing="5">
-                <Label text="Facilities Management" style="-fx-font-size: 28px; -fx-font-weight: 800; -fx-text-fill: #1e293b;"/>
-                <Label text="View and manage all library facilities" style="-fx-font-size: 14px; -fx-text-fill: #64748b;"/>
+                <Label text="Tesis Yonetimi" style="-fx-font-size: 28px; -fx-font-weight: 800; -fx-text-fill: #1e293b;"/>
+                <Label text="Tum kutuphane tesislerini goruntule ve yonet" style="-fx-font-size: 14px; -fx-text-fill: #64748b;"/>
             </VBox>
             <Region HBox.hgrow="ALWAYS"/>
-            <Label fx:id="totalCountLabel" text="Total: 0 facilities" style="-fx-font-size: 14px; -fx-text-fill: #64748b;"/>
+            <Label fx:id="totalCountLabel" text="Toplam: 0 tesis" style="-fx-font-size: 14px; -fx-text-fill: #64748b;"/>
         </HBox>
 
         <!-- SEARCH BAR -->
         <HBox spacing="15" alignment="CENTER_LEFT">
-            <TextField fx:id="searchField" promptText="Search facilities..." prefWidth="300" styleClass="text-field"/>
-            <Button text="Search" onAction="#handleSearch" styleClass="secondary-button"/>
+            <TextField fx:id="searchField" promptText="Tesis ara..." prefWidth="300" styleClass="text-field"/>
+            <Button text="Ara" onAction="#handleSearch" styleClass="secondary-button"/>
             <Region HBox.hgrow="ALWAYS"/>
-            <Button text="+ Create New Facility" onAction="#handleCreateNew" styleClass="primary-button"/>
+            <Button text="+ Yeni Tesis Olustur" onAction="#handleCreateNew" styleClass="primary-button"/>
         </HBox>
 
         <!-- FACILITIES GRID -->
@@ -45,9 +45,9 @@
 
         <!-- EMPTY STATE -->
         <VBox fx:id="emptyState" alignment="CENTER" spacing="15" visible="false" managed="false" style="-fx-padding: 60;">
-            <Label text="No Facilities Found" style="-fx-font-size: 24px; -fx-font-weight: 700; -fx-text-fill: #94a3b8;"/>
-            <Label text="Create your first facility to get started" style="-fx-font-size: 14px; -fx-text-fill: #cbd5e1;"/>
-            <Button text="Create Facility" onAction="#handleCreateNew" styleClass="primary-button" style="-fx-padding: 12 24;"/>
+            <Label text="Tesis Bulunamadi" style="-fx-font-size: 24px; -fx-font-weight: 700; -fx-text-fill: #94a3b8;"/>
+            <Label text="Baslamak icin ilk tesisinizi olusturun" style="-fx-font-size: 14px; -fx-text-fill: #cbd5e1;"/>
+            <Button text="Tesis Olustur" onAction="#handleCreateNew" styleClass="primary-button" style="-fx-padding: 12 24;"/>
         </VBox>
 
     </VBox>

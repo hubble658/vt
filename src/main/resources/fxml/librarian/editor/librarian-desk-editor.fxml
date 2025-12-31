@@ -11,15 +11,15 @@
     <!-- ÜST HEADER -->
     <top>
         <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-background-color: white; -fx-padding: 10; -fx-border-color: #ddd; -fx-border-width: 0 0 1 0;">
-            <Label text="Facility Map" style="-fx-font-weight: bold; -fx-text-fill: #555;">
+            <Label text="Tesis Haritasi" style="-fx-font-weight: bold; -fx-text-fill: #555;">
                 <font><Font size="14.0" /></font>
             </Label>
 
-            <Label fx:id="breadcrumbLabel" text=" > Select a Block" style="-fx-text-fill: #888;" />
+            <Label fx:id="breadcrumbLabel" text=" > Bir Blok Secin" style="-fx-text-fill: #888;" />
 
             <Region HBox.hgrow="ALWAYS" />
 
-            <Button fx:id="btnBackToMap" text="Back to Facility Map" onAction="#handleBackToMap" visible="false" styleClass="link-button" />
+            <Button fx:id="btnBackToMap" text="Tesis Haritasina Don" onAction="#handleBackToMap" visible="false" styleClass="link-button" />
         </HBox>
     </top>
 
@@ -54,52 +54,52 @@
     <right>
         <StackPane>
             <VBox fx:id="selectionPanel" prefWidth="300.0" spacing="20.0" styleClass="sidebar" visible="true" alignment="CENTER">
-                <Label text="👆 Select a Block" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #888;" />
-                <Label text="Click on a block in the map to manage its desks." wrapText="true" textAlignment="CENTER" style="-fx-text-fill: #999;" />
+                <Label text="👆 Bir Blok Secin" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #888;" />
+                <Label text="Masalari yonetmek icin haritada bir bloga tiklayin." wrapText="true" textAlignment="CENTER" style="-fx-text-fill: #999;" />
             </VBox>
 
             <VBox fx:id="editorPanel" prefWidth="300.0" spacing="15.0" styleClass="sidebar" visible="false">
                 <padding><Insets bottom="20" left="20" right="20" top="20"/></padding>
 
-                <Label styleClass="header-label" text="Desk Editor" />
-                <Label fx:id="blockInfoLabel" styleClass="sub-header-label" text="Editing: Block A" />
+                <Label styleClass="header-label" text="Masa Editoru" />
+                <Label fx:id="blockInfoLabel" styleClass="sub-header-label" text="Duzenleniyor: Blok A" />
 
                 <Separator />
 
                 <VBox fx:id="propertiesBox" disable="true" spacing="10.0">
-                    <Label style="-fx-font-weight: bold;" text="Selected Desk Properties" />
+                    <Label style="-fx-font-weight: bold;" text="Secilen Masa Ozellikleri" />
 
                     <VBox spacing="5">
-                        <Label text="Seat Capacity (Size)" />
+                        <Label text="Koltuk Kapasitesi (Boyut)" />
                         <Spinner fx:id="sizeSpinner" editable="true" min="1" max="50" />
                     </VBox>
 
                     <VBox spacing="5">
-                        <Label text="ID Allocation Range" />
+                        <Label text="ID Atama Araligi" />
                         <Spinner fx:id="allocationSpinner" editable="true" min="1" max="100" />
                     </VBox>
 
-                    <Label fx:id="rangePreviewLabel" text="Range: --" style="-fx-font-weight: bold; -fx-text-fill: #4a90e2;" />
+                    <Label fx:id="rangePreviewLabel" text="Aralik: --" style="-fx-font-weight: bold; -fx-text-fill: #4a90e2;" />
 
-                    <Label text="Dimensions &amp; Color" />
+                    <Label text="Boyutlar &amp; Renk" />
                     <!-- GÜNCELLEME: Slider Max değerleri 600 yapıldı -->
                     <Slider fx:id="widthSlider" min="20" max="600" />
                     <Slider fx:id="heightSlider" min="20" max="600" />
                     <ColorPicker fx:id="colorPicker" maxWidth="Infinity" />
 
-                    <Button maxWidth="Infinity" onAction="#handleDeleteDesk" styleClass="danger-button" text="Delete Desk" />
+                    <Button maxWidth="Infinity" onAction="#handleDeleteDesk" styleClass="danger-button" text="Masayi Sil" />
                 </VBox>
 
                 <Separator />
-                <Button fx:id="btnUndo" maxWidth="Infinity" onAction="#handleUndo" styleClass="link-button" text="↩ Undo" />
-                <Button maxWidth="Infinity" onAction="#handleAddDesk" styleClass="primary-button" text="+ Add New Desk" />
-                <Button maxWidth="Infinity" onAction="#handleSaveChanges" styleClass="success-button" text="Save Changes" />
+                <Button fx:id="btnUndo" maxWidth="Infinity" onAction="#handleUndo" styleClass="link-button" text="↩ Geri Al" />
+                <Button maxWidth="Infinity" onAction="#handleAddDesk" styleClass="primary-button" text="+ Yeni Masa Ekle" />
+                <Button maxWidth="Infinity" onAction="#handleSaveChanges" styleClass="success-button" text="Degisiklikleri Kaydet" />
 
                 <Label fx:id="statusLabel" managed="false" visible="false" wrapText="true" />
 
                 <VBox VBox.vgrow="ALWAYS" />
 
-                <Button onAction="#handleBackToMap" styleClass="link-button" text="Back to Facility Map" />
+                <Button onAction="#handleBackToMap" styleClass="link-button" text="Tesis Haritasina Don" />
             </VBox>
         </StackPane>
     </right>

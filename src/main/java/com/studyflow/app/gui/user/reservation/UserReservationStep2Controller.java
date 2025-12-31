@@ -28,21 +28,30 @@ import java.util.stream.Collectors;
 @Component
 public class UserReservationStep2Controller {
 
-    @FXML private Pane mapCanvas;
-    @FXML private Label dateLabel;
+    @FXML
+    private Pane mapCanvas;
+    @FXML
+    private Label dateLabel;
 
-    @Autowired private GlobalParamsContext globalParams;
-    @Autowired private FacilityBlockRepository blockRepository;
-    @Autowired private ReservationService reservationService;
-    @Autowired private NavigationService navigationService;
-    @Autowired private ViewFactory viewFactory;
+    @Autowired
+    private GlobalParamsContext globalParams;
+    @Autowired
+    private FacilityBlockRepository blockRepository;
+    @Autowired
+    private ReservationService reservationService;
+    @Autowired
+    private NavigationService navigationService;
+    @Autowired
+    private ViewFactory viewFactory;
 
-    @Autowired private UserHomeController userHomeController;
+    @Autowired
+    private UserHomeController userHomeController;
 
     @FXML
     public void initialize() {
         // Header Bilgisi
-        dateLabel.setText(globalParams.getSelectedDate() + " | " + globalParams.getSelectedStartTime() + " - " + globalParams.getSelectedEndTime());
+        dateLabel.setText(globalParams.getSelectedDate() + " | " + globalParams.getSelectedStartTime() + " - "
+                + globalParams.getSelectedEndTime());
 
         loadBlocksWithAvailability();
     }
@@ -59,8 +68,7 @@ public class UserReservationStep2Controller {
                 facilityId,
                 globalParams.getSelectedDate(),
                 globalParams.getSelectedStartTime(),
-                globalParams.getSelectedEndTime()
-        );
+                globalParams.getSelectedEndTime());
 
         // Kolay erişim için Map'e çevir
         Map<Long, AvailabilityDTO> availabilityMap = availabilityList.stream()
@@ -82,7 +90,7 @@ public class UserReservationStep2Controller {
         double scaledY = block.getY() * BLOCK_SCALE;
         double scaledWidth = block.getWidth() * BLOCK_SCALE;
         double scaledHeight = block.getHeight() * BLOCK_SCALE;
-        
+
         node.setLayoutX(scaledX);
         node.setLayoutY(scaledY);
         node.setPrefSize(scaledWidth, scaledHeight);
@@ -101,19 +109,19 @@ public class UserReservationStep2Controller {
 
         if (status != null) {
             freeDesks = status.getFreeSeats(); // Blok için bu aslında free desk sayısı
-            
+
             if ("GOOD".equals(status.getAvailabilityStatus())) {
                 gradientStart = "#34d399";
                 gradientEnd = "#10b981";
                 colorHex = "#10b981";
                 clickable = true;
-                statusText = "Müsait";
+                statusText = "Musait";
             } else if ("LIMITED".equals(status.getAvailabilityStatus())) {
                 gradientStart = "#fbbf24";
                 gradientEnd = "#f59e0b";
                 colorHex = "#f59e0b";
                 clickable = true;
-                statusText = "Sınırlı";
+                statusText = "Sinirli";
             } else {
                 gradientStart = "#94a3b8";
                 gradientEnd = "#64748b";
@@ -129,8 +137,7 @@ public class UserReservationStep2Controller {
         javafx.scene.paint.LinearGradient gradient = new javafx.scene.paint.LinearGradient(
                 0, 0, 0, 1, true, javafx.scene.paint.CycleMethod.NO_CYCLE,
                 new javafx.scene.paint.Stop(0, Color.web(gradientStart)),
-                new javafx.scene.paint.Stop(1, Color.web(gradientEnd))
-        );
+                new javafx.scene.paint.Stop(1, Color.web(gradientEnd)));
         rect.setFill(gradient);
         rect.setStroke(Color.web(colorHex).darker());
         rect.setStrokeWidth(2);

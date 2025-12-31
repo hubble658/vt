@@ -42,44 +42,44 @@
                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
             </padding>
 
-            <Label styleClass="header-label" text="Block Editor" />
-            <Label styleClass="sub-header-label" text="Select a block to edit" />
+            <Label styleClass="header-label" text="Blok Editoru" />
+            <Label styleClass="sub-header-label" text="Duzenlemek icin bir blok secin" />
 
             <Separator />
 
             <VBox fx:id="propertiesPanel" disable="true" spacing="10.0">
-                <Label style="-fx-font-weight: bold;" text="Selected Block Properties" />
+                <Label style="-fx-font-weight: bold;" text="Secilen Blok Ozellikleri" />
 
                 <VBox>
-                    <Label text="Block Name" />
-                    <TextField fx:id="blockNameField" promptText="e.g. Zone A" />
+                    <Label text="Blok Adi" />
+                    <TextField fx:id="blockNameField" promptText="or. Bolge A" />
                 </VBox>
 
                 <VBox>
-                    <Label text="Width (px)" />
+                    <Label text="Genislik (px)" />
                     <!-- GÜNCELLEME: Max değer 600'e çıkarıldı -->
                     <Slider fx:id="widthSlider" blockIncrement="10.0" majorTickUnit="50.0" max="600.0" min="20.0" showTickMarks="true" value="100.0" />
                 </VBox>
 
                 <VBox>
-                    <Label text="Height (px)" />
+                    <Label text="Yukseklik (px)" />
                     <!-- GÜNCELLEME: Max değer 600'e çıkarıldı -->
                     <Slider fx:id="heightSlider" blockIncrement="10.0" majorTickUnit="50.0" max="600.0" min="20.0" showTickMarks="true" value="80.0" />
                 </VBox>
 
                 <VBox>
-                    <Label text="Color" />
+                    <Label text="Renk" />
                     <ColorPicker fx:id="colorPicker" maxWidth="Infinity" />
                 </VBox>
 
-                <Button maxWidth="Infinity" onAction="#handleDeleteBlock" styleClass="danger-button" text="Delete Block" />
+                <Button maxWidth="Infinity" onAction="#handleDeleteBlock" styleClass="danger-button" text="Blogu Sil" />
             </VBox>
 
             <Separator />
 
-            <Button fx:id="btnUndo" maxWidth="Infinity" onAction="#handleUndo" styleClass="link-button" text="↩ Undo Last Action" />
-            <Button maxWidth="Infinity" onAction="#handleAddBlock" styleClass="primary-button" text="+ Add New Block" />
-            <Button maxWidth="Infinity" onAction="#handleSaveChanges" styleClass="success-button" text="Save Changes" />
+            <Button fx:id="btnUndo" maxWidth="Infinity" onAction="#handleUndo" styleClass="link-button" text="↩ Son Islemi Geri Al" />
+            <Button maxWidth="Infinity" onAction="#handleAddBlock" styleClass="primary-button" text="+ Yeni Blok Ekle" />
+            <Button maxWidth="Infinity" onAction="#handleSaveChanges" styleClass="success-button" text="Degisiklikleri Kaydet" />
 
             <Label fx:id="statusLabel" managed="false" visible="false" wrapText="true" />
 

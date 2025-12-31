@@ -35,18 +35,27 @@ public class UserReservationStep3Controller {
     // Scale factor: masalari 1/2 boyutunda goster
     private static final double DESK_SCALE = 0.5;
 
-    @FXML private Pane deskCanvas;
+    @FXML
+    private Pane deskCanvas;
 
     // Header sağ üst özet (Step4 ile uyumlu)
-    @FXML private Label lblTopSummaryDateTime;
-    @FXML private Label lblTopSummaryBlockInfo;
+    @FXML
+    private Label lblTopSummaryDateTime;
+    @FXML
+    private Label lblTopSummaryBlockInfo;
 
-    @Autowired private GlobalParamsContext globalParams;
-    @Autowired private DeskRepository deskRepository;
-    @Autowired private ReservationService reservationService;
-    @Autowired private NavigationService navigationService;
-    @Autowired private ViewFactory viewFactory;
-    @Autowired private UserHomeController userHomeController;
+    @Autowired
+    private GlobalParamsContext globalParams;
+    @Autowired
+    private DeskRepository deskRepository;
+    @Autowired
+    private ReservationService reservationService;
+    @Autowired
+    private NavigationService navigationService;
+    @Autowired
+    private ViewFactory viewFactory;
+    @Autowired
+    private UserHomeController userHomeController;
 
     @FXML
     public void initialize() {
@@ -98,8 +107,7 @@ public class UserReservationStep3Controller {
                 block.getId(),
                 globalParams.getSelectedDate(),
                 globalParams.getSelectedStartTime(),
-                globalParams.getSelectedEndTime()
-        );
+                globalParams.getSelectedEndTime());
 
         Map<Long, AvailabilityDTO> availabilityMap = availabilityList.stream()
                 .collect(Collectors.toMap(AvailabilityDTO::getId, dto -> dto));
@@ -116,7 +124,7 @@ public class UserReservationStep3Controller {
         double scaledY = desk.getY() * DESK_SCALE;
         double scaledWidth = desk.getWidth() * DESK_SCALE;
         double scaledHeight = desk.getHeight() * DESK_SCALE;
-        
+
         node.setLayoutX(scaledX);
         node.setLayoutY(scaledY);
         node.setPrefSize(scaledWidth, scaledHeight);
@@ -180,8 +188,7 @@ public class UserReservationStep3Controller {
         javafx.scene.paint.LinearGradient gradient = new javafx.scene.paint.LinearGradient(
                 0, 0, 0, 1, true, javafx.scene.paint.CycleMethod.NO_CYCLE,
                 new javafx.scene.paint.Stop(0, Color.web(gradientStart)),
-                new javafx.scene.paint.Stop(1, Color.web(gradientEnd))
-        );
+                new javafx.scene.paint.Stop(1, Color.web(gradientEnd)));
         rect.setFill(gradient);
         rect.setStroke(Color.web(colorHex).darker());
         rect.setStrokeWidth(2);
@@ -198,31 +205,29 @@ public class UserReservationStep3Controller {
 
         String subtitle;
         if (status == null) {
-            subtitle = "Tüm koltuklar boş";
+            subtitle = "Tum koltuklar bos";
         } else if (freeSeats == 0) {
-            subtitle = "Boş koltuk yok";
+            subtitle = "Bos koltuk yok";
         } else if (freeSeats == 1) {
-            subtitle = "1 boş koltuk";
+            subtitle = "1 bos koltuk";
         } else {
-            subtitle = freeSeats + " boş koltuk";
+            subtitle = freeSeats + " bos koltuk";
         }
 
         Label titleLabel = new Label(deskText);
         titleLabel.setStyle(
                 "-fx-text-fill: white;" +
-                "-fx-font-weight: bold;" +
-                "-fx-font-size: 10px;" +
-                "-fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.4), 2, 0, 0, 1);"
-        );
+                        "-fx-font-weight: bold;" +
+                        "-fx-font-size: 10px;" +
+                        "-fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.4), 2, 0, 0, 1);");
 
         Label subtitleLabel = new Label(subtitle);
         subtitleLabel.setStyle(
                 "-fx-text-fill: rgba(255,255,255,0.9);" +
-                "-fx-font-size: 8px;" +
-                "-fx-background-color: rgba(0,0,0,0.2);" +
-                "-fx-background-radius: 6;" +
-                "-fx-padding: 2 5;"
-        );
+                        "-fx-font-size: 8px;" +
+                        "-fx-background-color: rgba(0,0,0,0.2);" +
+                        "-fx-background-radius: 6;" +
+                        "-fx-padding: 2 5;");
 
         VBox textBox = new VBox(4, titleLabel, subtitleLabel);
         textBox.setAlignment(Pos.CENTER);
@@ -259,8 +264,6 @@ public class UserReservationStep3Controller {
 
         deskCanvas.getChildren().add(node);
     }
-
-
 
     private void handleDeskClick(Desk desk) {
         globalParams.setSelectedDesk(desk);

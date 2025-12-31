@@ -15,8 +15,8 @@
     <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="450.0" spacing="20.0" styleClass="form-card">
 
         <VBox alignment="CENTER" spacing="5.0">
-            <Label styleClass="header-label" text="Create Account" />
-            <Label styleClass="sub-header-label" text="Join StudyFlow today" />
+            <Label styleClass="header-label" text="Hesap Olustur" />
+            <Label styleClass="sub-header-label" text="StudyFlow'a bugun katilin" />
         </VBox>
 
         <!-- Ana Form Yapısı -->
@@ -25,31 +25,31 @@
             <!-- İsim Soyisim Yan Yana -->
             <HBox spacing="10.0">
                 <VBox HBox.hgrow="ALWAYS" spacing="10.0">
-                    <Label text="First Name" />
-                    <TextField fx:id="firstNameField" promptText="John" />
+                    <Label text="Ad" />
+                    <TextField fx:id="firstNameField" promptText="Ali" />
                 </VBox>
                 <VBox HBox.hgrow="ALWAYS" spacing="10.0">
-                    <Label text="Last Name" />
-                    <TextField fx:id="lastNameField" promptText="Doe" />
+                    <Label text="Soyad" />
+                    <TextField fx:id="lastNameField" promptText="Yilmaz" />
                 </VBox>
             </HBox>
 
-            <Label text="Email Address" />
+            <Label text="E-posta Adresi" />
             <TextField fx:id="emailField" promptText="john@example.com" />
 
-            <Label text="Password" />
-            <PasswordField fx:id="passwordField" promptText="Create a strong password" />
+            <Label text="Sifre" />
+            <PasswordField fx:id="passwordField" promptText="Guclu bir sifre olusturun" />
 
-            <Label text="Confirm Password" />
-            <PasswordField fx:id="confirmPasswordField" promptText="Re-enter your password" />
+            <Label text="Sifreyi Onayla" />
+            <PasswordField fx:id="confirmPasswordField" promptText="Sifrenizi tekrar girin" />
         </VBox>
 
         <Label fx:id="errorLabel" textFill="red" visible="false" managed="false" wrapText="true"/>
 
-        <Button maxWidth="1.7976931348623157E308" onAction="#handleRegister" styleClass="primary-button" text="Sign Up" />
+        <Button maxWidth="1.7976931348623157E308" onAction="#handleRegister" styleClass="primary-button" text="Kayit Ol" />
 
         <HBox alignment="CENTER">
-            <Button onAction="#handleGoToLogin" styleClass="link-button" text="Already have an account? Sign In" />
+            <Button onAction="#handleGoToLogin" styleClass="link-button" text="Zaten hesabiniz var mi? Giris Yapin" />
         </HBox>
 
     </VBox>

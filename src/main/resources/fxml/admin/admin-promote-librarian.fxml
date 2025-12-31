@@ -11,29 +11,29 @@
     <VBox maxHeight="-Infinity" maxWidth="-Infinity" prefWidth="500.0" spacing="20.0" styleClass="form-card">
 
         <VBox alignment="CENTER" spacing="5.0">
-            <Label styleClass="header-label" text="Manage Staff" />
-            <Label styleClass="sub-header-label" text="Promote User to Librarian" />
+            <Label styleClass="header-label" text="Personel Yonetimi" />
+            <Label styleClass="sub-header-label" text="Kullaniciyi Kutuphaneciye Terfi Et" />
         </VBox>
 
         <VBox spacing="15.0">
-            <Label text="This action promotes an existing user to the Librarian role and assigns them to a facility." textFill="#666" wrapText="true"/>
+            <Label text="Bu islem mevcut bir kullaniciyi Kutuphaneci roluyle yetkilendirir ve bir tesise atar." textFill="#666" wrapText="true"/>
 
             <!-- Email Girişi -->
             <VBox>
-                <Label text="User Email Address" />
-                <TextField fx:id="emailField" promptText="Enter user email (e.g. user@studyflow.com)" />
+                <Label text="Kullanici E-posta Adresi" />
+                <TextField fx:id="emailField" promptText="Kullanici e-postasini girin (or. user@studyflow.com)" />
             </VBox>
 
             <!-- DEĞİŞTİ: Tesis ID Girişi -->
             <VBox>
-                <Label text="Facility ID" />
-                <TextField fx:id="facilityIdField" promptText="Enter facility ID (e.g. 5)" />
+                <Label text="Tesis ID" />
+                <TextField fx:id="facilityIdField" promptText="Tesis ID girin (or. 5)" />
             </VBox>
         </VBox>
 
         <Label fx:id="statusLabel" managed="false" visible="false" wrapText="true" />
 
-        <Button maxWidth="1.7976931348623157E308" onAction="#handlePromoteUser" styleClass="primary-button" text="Grant Librarian Access" />
+        <Button maxWidth="1.7976931348623157E308" onAction="#handlePromoteUser" styleClass="primary-button" text="Kutuphaneci Yetkisi Ver" />
 
     </VBox>
 </StackPane>

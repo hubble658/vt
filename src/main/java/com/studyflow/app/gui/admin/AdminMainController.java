@@ -20,13 +20,19 @@ import java.time.format.DateTimeFormatter;
 @Component
 public class AdminMainController {
 
-    @FXML private Label welcomeLabel;
-    @FXML private Label dateLabel;
-    @FXML private StackPane contentArea;
+    @FXML
+    private Label welcomeLabel;
+    @FXML
+    private Label dateLabel;
+    @FXML
+    private StackPane contentArea;
 
-    @FXML private Button btnDashboard;
-    @FXML private Button btnFacilities;
-    @FXML private Button btnLibrarians;
+    @FXML
+    private Button btnDashboard;
+    @FXML
+    private Button btnFacilities;
+    @FXML
+    private Button btnLibrarians;
 
     @Autowired
     private NavigationService navigationService;
@@ -41,7 +47,7 @@ public class AdminMainController {
     public void initialize() {
         dateLabel.setText(LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         if (userSessionContext.getCurrentUser() != null) {
-            welcomeLabel.setText("Welcome, " + userSessionContext.getCurrentUser().getFirstName());
+            welcomeLabel.setText("Hosgeldiniz, " + userSessionContext.getCurrentUser().getFirstName());
         }
         showDashboard();
     }
@@ -62,8 +68,8 @@ public class AdminMainController {
         ContextMenu menu = new ContextMenu();
         menu.getStyleClass().add("pop-menu");
 
-        MenuItem itemList = new MenuItem("List All Facilities");
-        MenuItem itemCreate = new MenuItem("Create New Facility");
+        MenuItem itemList = new MenuItem("Tum Tesisleri Listele");
+        MenuItem itemCreate = new MenuItem("Yeni Tesis Olustur");
 
         itemList.setOnAction(e -> loadView("/fxml/admin/admin-facilities-list.fxml"));
         itemCreate.setOnAction(e -> loadView("/fxml/admin/admin-create-facility.fxml"));
@@ -80,7 +86,7 @@ public class AdminMainController {
         ContextMenu menu = new ContextMenu();
         menu.getStyleClass().add("pop-menu");
 
-        MenuItem itemPromote = new MenuItem("Promote User to Librarian");
+        MenuItem itemPromote = new MenuItem("Kullaniciyi Kutuphaneci Yap");
 
         itemPromote.setOnAction(e -> loadView("/fxml/admin/admin-promote-librarian.fxml"));
 
@@ -98,7 +104,7 @@ public class AdminMainController {
         Parent view = viewFactory.loadView(fxmlPath);
         contentArea.getChildren().setAll(view);
     }
-    
+
     /**
      * Diger controller'lardan view yukleme icin public metod
      */
