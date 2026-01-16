@@ -134,32 +134,57 @@ public class AdminHomeController {
         }
     }
 
+    private static class FacilityStat {
+        Facility facility;
+        int activeCount;
+
+        public FacilityStat(Facility facility, int activeCount) {
+            this.facility = facility;
+            this.activeCount = activeCount;
+        }
+    }
+
     private void loadTopFacilities() {
         try {
-            List<Facility> facilities = facilityService.getAllFacilities("ASC");
+            String sql = "SELECT f.id, f.name, f.address, f.image_url, COUNT(r.id) as reservation_count " +
+                    "FROM facilities f " +
+                    "LEFT JOIN reservations r ON f.id = r.facility_id " +
+                    "AND r.reservation_date = ? AND r.status = 'ACTIVE' " +
+                    "GROUP BY f.id, f.name, f.address, f.image_url " +
+                    "ORDER BY reservation_count DESC, f.name ASC " +
+                    "LIMIT 4";
+
+            List<FacilityStat> stats = jdbcTemplate.query(sql, (rs, rowNum) -> {
+                Facility f = new Facility();
+                f.setId(rs.getLong("id"));
+                f.setName(rs.getString("name"));
+                f.setAddress(rs.getString("address"));
+                f.setImageUrl(rs.getString("image_url"));
+                return new FacilityStat(f, rs.getInt("reservation_count"));
+            }, LocalDate.now());
+
             topFacilitiesPane.getChildren().clear();
 
-            // En fazla 4 tesis goster
-            int limit = Math.min(4, facilities.size());
-            for (int i = 0; i < limit; i++) {
-                Facility f = facilities.get(i);
-                topFacilitiesPane.getChildren().add(createFacilityMiniCard(f));
+            for (FacilityStat stat : stats) {
+                topFacilitiesPane.getChildren().add(createFacilityMiniCard(stat));
             }
 
-            if (facilities.isEmpty()) {
-                Label empty = new Label("Henuz tesis yok");
+            if (stats.isEmpty()) {
+                Label empty = new Label("Bugün henüz aktif rezervasyon yok");
                 empty.setStyle("-fx-text-fill: #999; -fx-font-size: 14px;");
                 topFacilitiesPane.getChildren().add(empty);
             }
         } catch (Exception e) {
             System.err.println("Top facilities yukleme hatasi: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 
-    private VBox createFacilityMiniCard(Facility facility) {
+    private VBox createFacilityMiniCard(FacilityStat stat) {
+        Facility facility = stat.facility;
         VBox card = new VBox(8);
         card.setPrefWidth(180);
-        card.setPrefHeight(140);
+        card.setPrefHeight(150); // Slightly increased height
         card.setStyle("-fx-background-color: #f8f9fa; -fx-background-radius: 8; -fx-padding: 10;");
         card.setAlignment(Pos.TOP_CENTER);
 
@@ -183,12 +208,16 @@ public class AdminHomeController {
         name.setStyle("-fx-font-size: 12px; -fx-font-weight: 600; -fx-text-fill: #333;");
         name.setWrapText(true);
 
-        // Seats count
+        // Active Reservations
+        Label activeLabel = new Label("Aktif: " + stat.activeCount);
+        activeLabel.setStyle("-fx-font-size: 11px; -fx-text-fill: #e74c3c; -fx-font-weight: bold;");
+
+        // Total Seats
         Integer seatCount = getSeatCount(facility.getId());
-        Label seats = new Label(seatCount + " koltuk");
+        Label seats = new Label("Kapasite: " + seatCount);
         seats.setStyle("-fx-font-size: 11px; -fx-text-fill: #666;");
 
-        card.getChildren().addAll(imageView, name, seats);
+        card.getChildren().addAll(imageView, name, activeLabel, seats);
         return card;
     }
 
