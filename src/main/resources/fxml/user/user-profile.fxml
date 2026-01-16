@@ -83,9 +83,9 @@
                             <VBox GridPane.columnIndex="2" GridPane.rowIndex="0" prefWidth="320" prefHeight="180" styleClass="stat-card">
                                 <Label text="Oturum Analizleri" styleClass="stat-title" />
                                 <VBox spacing="12">
-                                    <HBox spacing="10"><Label text="Ortalama:" style="-fx-text-fill: #999;" /><Label fx:id="lblAvgSession" text="--d" style="-fx-font-weight: bold; -fx-text-fill: #333;" /></HBox>>
-                                    <HBox spacing="10"><Label text="En Uzun:" style="-fx-text-fill: #999;" /><Label fx:id="lblLongestSession" text="--d" style="-fx-font-weight: bold; -fx-text-fill: #333;" /></HBox>>
-                                    <HBox spacing="10"><Label text="En Kisa:" style="-fx-text-fill: #999;" /><Label fx:id="lblShortestSession" text="--d" style="-fx-font-weight: bold; -fx-text-fill: #333;" /></HBox>>
+                                    <HBox spacing="10"><Label text="Ortalama:" style="-fx-text-fill: #999;" /><Label fx:id="lblAvgSession" text="--d" style="-fx-font-weight: bold; -fx-text-fill: #333;" /></HBox>
+                                    <HBox spacing="10"><Label text="En Uzun:" style="-fx-text-fill: #999;" /><Label fx:id="lblLongestSession" text="--d" style="-fx-font-weight: bold; -fx-text-fill: #333;" /></HBox>
+                                    <HBox spacing="10"><Label text="En Kisa:" style="-fx-text-fill: #999;" /><Label fx:id="lblShortestSession" text="--d" style="-fx-font-weight: bold; -fx-text-fill: #333;" /></HBox>
                                 </VBox>
                             </VBox>
 
